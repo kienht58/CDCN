@@ -14,22 +14,22 @@
 Route::get('/', [
 	'as' => 'dashboard.index',
 	'uses' => 'DashboardController@index'
-	]);
+]);
 
 Route::group(['prefix' => 'categories'], function() {
 	Route::get('/{category_id}', [
 		'as' => 'categories.show',
 		'uses' => 'CategoriesController@show'
-		]);
+	]);
 });
 
 Route::group(['prefix' => '/categories/{category_id}/posts'], function() {
 	Route::get('/{post_id}', [
 		'as' => 'posts.show',
 		'uses' => 'PostsController@show'
-		]);
+	]);
 	Route::post('/{post_id}', [
 		'as' => 'posts.storeReview',
 		'uses' => 'PostsController@storeReview'
-		]);
+	]);
 });

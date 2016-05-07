@@ -5,62 +5,66 @@
 @stop
 
 @section('content')
-	<div class="row">
-	<ul>
-		<li>{{$game->description}}</li>
-		<li>{{$game->minimumRequirement}}</li>
-		<li>{{$game->recommendRequirement}}</li>
-		<li>{{$game->genre}}</li>
-		<li>{{$game->releaseTime}}</li>
-	</ul>
-    <h3>Reviews</h3>
-    <ul>
-    @foreach($reviews as $review)
-        <li id="dit">{{$review->content}}</li>
-    @endforeach
-    </ul>
-    {!! Form::open([
-                        'route' => ['posts.storeReview', $category_id, $post->id],
-                        'method' => 'POST',
-                        'class' => 'form-horizontal'
-                    ])
-    !!}
-            <div class="form-group">
-                {!! Form::label('Review', 'Review', [ 'class' => 'control-label' ]) !!}
-                {!! Form::text('reviewContent', '', ['id' => 'reviewContent', 'class' => 'form-control', 'required']) !!}
-            </div>
+<div class="container">
+    <div class="row">
+        <ul>
+            <li>{{$game->description}}</li>
+            <li>{{$game->minimumRequirement}}</li>
+            <li>{{$game->recommendRequirement}}</li>
+            <li>{{$game->genre}}</li>
+            <li>{{$game->releaseTime}}</li>
+        </ul>
+    </div>
+</div>
 
-            <div class="form-group">
-                {!! Form::submit('Thêm', ['id' => 'submit', 'class' => 'btn btn-primary pull-right' ])!!}
-            </div>
-    {!! Form::close() !!}
-    
-    <script type="text/javascript">
-        $.ajaxSetup({
-            headers: { 'X-CSRF-TOKEN': $('[name="_token"]').val() }
-        });
-    </script>
+<div class="container">
+    <div class="row">
+        <h3>Reviews</h3>
+        <ul id="list-review">
+            @foreach($reviews as $review)
+            <li>{{$review->content}}</li>
+            @endforeach
+        </ul>
+        {!! Form::open([
+            'route'  => ['posts.storeReview', $category_id, $post->id],
+            'method' => 'POST',
+            'class'  => 'form-horizontal',
+            'id'     => 'review'
+        ])
+        !!}
+        <input type="hidden" name="post_id" id="post_id" value="{{$post->id}}">
 
-    <script>
-        $(document).ready(function(){
-            $('#submit').click(function(e){
-                e.preventDefault();   
-                var formData = {
-                    reviewContent: $('#reviewContent').val(),
-                }  
-                $.ajax({
-                    async: true,
-                    url: window.location.href,
-                    type: "POST",
-                    dataType: 'json',
-                    data: formData,
-                    success: function(response){
-                        $('#dit').append(response);
-                    }, error: function(response){
-                        console.log("cai dit nhau suong ghe");
-                    }
-                }); 
-            });
+        <div class="form-group">
+            {!! Form::label('Review', 'Review', [ 'class' => 'control-label' ]) !!}
+            {!! Form::text('content', '', ['id' => 'reviewContent', 'class' => 'form-control', 'required']) !!}
+        </div>
+
+        <div class="form-group">
+            {!! Form::submit('Thêm', ['id' => 'submit', 'class' => 'btn btn-primary pull-right' ])!!}
+        </div>
+        {!! Form::close() !!}
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        $('#review').on('submit', function(e) {
+            e.preventDefault();   
+            var reviewContent = $('#reviewContent').val();  
+            var token = '{{ csrf_token()}}';
+            var post_id = $('#post_id').val();
+            $.ajax({
+                type: "POST",//
+                url: window.location.href,
+                data: {content: reviewContent, _token: token, post_id: post_id},
+                success: function(response){
+                    $('#list-review').append(response);
+                }, 
+                error: function(response){
+                    console.log("Error");
+                }
+            }); 
         });
-    </script>
+    });
+</script>
 @stop
