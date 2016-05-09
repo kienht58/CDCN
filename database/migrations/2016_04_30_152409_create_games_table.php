@@ -14,15 +14,15 @@ class CreateGamesTable extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('post_id')->unsigned()->unique();
+            // $table->integer('post_id')->unsigned()->unique();
             $table->string('name');
             $table->text('description');
             $table->text('minimumRequirement');
             $table->text('recommendRequirement');
             $table->text('genre');
-            $table->timestamp('releaseTime');
+            // $table->timestamp('releaseTime');
             $table->string('downloadLink');
-            $table->integer('downloads')->unsigned();
+            $table->integer('downloads')->unsigned()->default(0);
             $table->timestamps();
         });
     }

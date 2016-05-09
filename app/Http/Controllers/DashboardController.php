@@ -12,6 +12,6 @@ class DashboardController extends Controller
 {
     public function index() {
     	$categories = Category::all();
-    	return view('layout/layout', compact('categories'));
+    	return view('welcome', compact('categories'));
     }
 }

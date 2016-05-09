@@ -26,7 +26,7 @@
             @endforeach
         </ul>
         {!! Form::open([
-            'route'  => ['posts.storeReview', $category_id, $post->id],
+            'route'  => ['post.storeReview', $category_id, $post->id],
             'method' => 'POST',
             'class'  => 'form-horizontal',
             'id'     => 'review'
@@ -58,7 +58,9 @@
                 url: window.location.href,
                 data: {content: reviewContent, _token: token, post_id: post_id},
                 success: function(response){
-                    $('#list-review').append(response);
+                    console.log("Done");
+                    $('#list-review').append("<li>" + response.content + "</li>");
+                    $('#reviewContent').val('');
                 }, 
                 error: function(response){
                     console.log("Error");

@@ -18,9 +18,7 @@
 				<a class="dropdown-toggle" id="menu1" data-toggle="dropdown">Categories
 				<span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-				@foreach($categories as $category)
-				    <li role="presentation"><a role="menuitem" href="{{ route('categories.show', $category->id) }}">{{$category->name}}</a></li>
-				@endforeach
+				@yield('list-categories')
 				</ul>
 			</li>
 	      	<li><a href="#">FAQs</a></li> 

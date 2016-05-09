@@ -25,6 +25,6 @@ class PostsController extends Controller
     	$review->post_id = $request->input('post_id');
     	$review->save();
 
-    	return response()->json($review);
+        return response()->json(['content' => $review->content]);
     }
 }

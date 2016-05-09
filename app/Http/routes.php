@@ -25,11 +25,22 @@ Route::group(['prefix' => 'categories'], function() {
 
 Route::group(['prefix' => '/categories/{category_id}/posts'], function() {
 	Route::get('/{post_id}', [
-		'as' => 'posts.show',
+		'as' => 'post.show',
 		'uses' => 'PostsController@show'
 	]);
 	Route::post('/{post_id}', [
-		'as' => 'posts.storeReview',
+		'as' => 'post.storeReview',
 		'uses' => 'PostsController@storeReview'
+	]);
+});
+
+Route::group(['prefix' => 'admin'], function() {
+	Route::get('game/create', [
+		'as' => 'game.create',
+		'uses' => 'GamesController@create'
+	]);
+	Route::post('game', [
+		'as' => 'game.store',
+		'uses' => 'GamesController@store'
 	]);
 });
