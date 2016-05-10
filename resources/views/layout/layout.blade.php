@@ -4,6 +4,7 @@
 	<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
 	<script src="{{ asset('js/jquery-2.2.3.js') }}"></script>
 	<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+	@yield('css-js')
 	@yield('title')
 </head>
 <body>

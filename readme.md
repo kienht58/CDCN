@@ -1,27 +1,30 @@
-# Laravel PHP Framework
+# Link never die - Selected Topics on Technology
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+### Requirement to install on local
+Your PC need:
+* LAMP (Linux + Apache + Mysql + PHP). If your OS is Window, your need install XAMPP/WAMPServer/...
+* Composer
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+### Installation
+Run command line:
+```sh
+$ git clone https://github.com/kienht58/CDCN.git
+$ cd CDCN
+$ composer update
+$ cp .env.example .env
+$ php artisan key:generate
+```
+Open .env file, change ```DB_DATABASE``` is your database's name, ```DB_USERNAME``` and ```DB_PASSWORD``` is username and password to connect database.
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+Next, run:
+```sh
+$ php artisan migrate
+```
+If your OS is Linux, you can run:
+```sh
+$ php artisan serve
+```
+to start server. And access to [localhost:8000](localhost:8000)
 
-## Official Documentation
+If your OS is Window, you need start Apache and access to [localhost/CDCN/public](localhost/CDCN/public)
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).

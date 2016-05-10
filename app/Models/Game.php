@@ -14,6 +14,7 @@ class Game extends Model
     	'minimumRequirement',
     	'recommendRequirement',
     	'genre',
+    	'releaseTime',
     	'downloadLink'
     ];
 }

@@ -42,6 +42,10 @@
 				{!! Form::text('genre', '', [ 'class' => 'form-control']) !!}
 			</div>
 			<div class="form-group">
+				{!! Form::label('releaseTime', 'Release Time', [ 'class' => 'control-label' ]) !!}
+				{!! Form::date('releaseTime', '', [ 'class' => 'form-control']) !!}
+			</div>
+			<div class="form-group">
 				{!! Form::label('downloadLink', 'Link download', [ 'class' => 'control-label' ]) !!}
 				{!! Form::text('downloadLink', '', [ 'class' => 'form-control']) !!}
 			</div>
