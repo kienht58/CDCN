@@ -1,31 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
-	<script src="{{ asset('js/jquery-2.2.3.js') }}"></script>
-	<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
-	@yield('css-js')
-	@yield('title')
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    @yield('head.title')
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bangers"  type="text/css">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="assets/css/carousel.css" >
+    <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
 </head>
-<body>
-	<nav class="navbar navbar-default">
-	    <div class="container-fluid">
-	    	<div class="navbar-header">
-	      		<a class="navbar-brand" href="{{route('dashboard.index')}}">CDCN LND</a>
-	    	</div>
-	    <ul class="nav navbar-nav">
-	      	<li class="active"><a href="/">Home</a></li>
-	      	<li class="dropdown">
-				<a class="dropdown-toggle" id="menu1" data-toggle="dropdown">Categories
-				<span class="caret"></span></a>
-				<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-				@yield('list-categories')
-				</ul>
-			</li>
-	      	<li><a href="#">FAQs</a></li> 
-	    </ul>
-	  	</div>
-	</nav>
-	@yield('content')
+<body id="app-layout">
+	@include('partials.navbar')
+	@yield('body.content')
+	@include('partials.footer')
+	<script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
 </body>
 </html>

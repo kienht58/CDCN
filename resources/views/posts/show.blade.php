@@ -54,7 +54,7 @@
             var token = '{{ csrf_token()}}';
             var post_id = $('#post_id').val();
             $.ajax({
-                type: "POST",//
+                type: "POST",
                 url: window.location.href,
                 data: {content: reviewContent, _token: token, post_id: post_id},
                 success: function(response){

@@ -44,3 +44,7 @@ Route::group(['prefix' => 'admin'], function() {
 		'uses' => 'GamesController@store'
 	]);
 });
+
+Route::auth();
+
+// Route::get('/home', 'HomeController@index');
