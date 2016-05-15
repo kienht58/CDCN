@@ -8,6 +8,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
+use Illuminate\Http\Request;
+use Response;
+use Auth;
+use Mail;
+
 class AuthController extends Controller
 {
     /*
@@ -71,5 +76,57 @@ class AuthController extends Controller
             'activation_code' => str_random(60) .  $data['email'],
             'role' => 'user',
         ]);
+    }
+
+    public function postLogin(Request $request)
+    {
+        $active = User::where('username', $request->username)->value('active');
+
+        if ($active == 0) {
+            return redirect()->back()->with('message', 'Chưa kích hoạt tài khoản. Kiểm tra lại email để kích hoạt');
+        }
+        return $this->login($request);
+    }
+
+    public function doRegister(Request $request)
+    {
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+
+        $user = $this->create($request->all());
+
+        $data = [
+            'username' => $user->username,
+            'code' => $user->activation_code
+        ];
+
+        $input = $request->all();
+
+        //$this->sendEmail($data, $input);
+        return redirect()->route('dashboard.index');
+    }
+
+    public function sendEmail($data, $input)
+    {
+        Mail::send('emails.register', $data, function($message) use ($input) {
+            $message->from('team@laravel-indonesia.com', 'Laravel Indonesia');
+            $message->to($input['email'], $input['username'])->subject('Please verify your account registration!');
+        }); 
+    }
+
+    public function activate($code)
+    {
+        $user = User::where('activation_code', $code)->first();
+        
+        if($user){
+            $user->update(['active' => 1]);
+            \Auth::login($user);
+            return redirect()->route('dashboard.index');
+        }    
     }
 }

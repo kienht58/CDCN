@@ -1,5 +1,9 @@
 @extends('layout.layout')
 
+@section('head.title')
+Register
+@stop
+
 @section('body.content')
 <div class="container">
     <div class="row">

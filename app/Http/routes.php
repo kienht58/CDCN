@@ -45,6 +45,17 @@ Route::group(['prefix' => 'admin'], function() {
 	]);
 });
 
-Route::auth();
+Route::get('login', 'Auth\AuthController@showLoginForm');
+Route::post('login', 'Auth\AuthController@postLogin');
+Route::get('logout', 'Auth\AuthController@logout');
 
-// Route::get('/home', 'HomeController@index');
+// Registration Routes...
+Route::get('register', 'Auth\AuthController@showRegistrationForm');
+Route::post('register', 'Auth\AuthController@doRegister');
+Route::get('activate/{code}', 'Auth\AuthController@activate');
+
+// Password Reset Routes...
+Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
+Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
+Route::post('password/reset', 'Auth\PasswordController@reset');
+
