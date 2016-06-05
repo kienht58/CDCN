@@ -107,14 +107,14 @@ class AuthController extends Controller
 
         $input = $request->all();
 
-        //$this->sendEmail($data, $input);
+        $this->sendEmail($data, $input);
         return redirect()->route('dashboard.index');
     }
 
     public function sendEmail($data, $input)
     {
-        Mail::send('emails.register', $data, function($message) use ($input) {
-            $message->from('team@laravel-indonesia.com', 'Laravel Indonesia');
+        Mail::send('auth.emails.register', $data, function($message) use ($input) {
+            $message->from('cdcn.linkneverdie@gmail.com', 'Link Never Die');
             $message->to($input['email'], $input['username'])->subject('Please verify your account registration!');
         }); 
     }
