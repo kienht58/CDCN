@@ -34,7 +34,7 @@ Route::group(['prefix' => '/categories/{category_id}/posts'], function() {
 	]);
 });
 
-Route::group(['prefix' => 'admin'], function() {
+Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function() {
 	Route::get('game/create', [
 		'as' => 'game.create',
 		'uses' => 'GamesController@create'
