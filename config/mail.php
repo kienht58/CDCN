@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => 'cdcn.linkneverdie@gmail.com', 'name' => 'Link Never Die'],
 
     /*
     |--------------------------------------------------------------------------
