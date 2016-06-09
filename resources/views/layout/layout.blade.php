@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{ URL::asset('assets/css/carousel.css') }}" >
     <link rel="stylesheet" href="{{ URL::asset('assets/css/custom.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/css/footer.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/css/select2.min.css') }}">
 </head>
 <body id="app-layout">
 	@include('partials.navbar')
@@ -25,5 +26,6 @@
 	@include('partials.footer')
 	<script src="{{ URL::asset('assets/js/jquery.min.js') }}"></script>
     <script src="{{ URL::asset('assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/select2.min.js') }}"></script>
 </body>
 </html>

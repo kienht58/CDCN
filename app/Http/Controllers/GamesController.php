@@ -10,21 +10,23 @@ use Carbon\Carbon;
 
 use App\Models\Category;
 use App\Models\Game;
+use App\Models\Post;
 
 class GamesController extends Controller
 {
     public function create()
     {
-    	$categories = Category::all();
+    	$categories = Category::all()->lists('name', 'id');
     	return view('games.create', compact('categories'));
     }
 
     public function store(Request $request)
     {
     	$request->releaseTime = Carbon::createFromFormat('Y-m-d', $request->releaseTime);
-        // return $request->releaseTime;
         $data = $request->except('_method', '_token');
         $game = Game::create($data);
-    	return $game;
+        return $data;
+    	// return redirect()->route('categories.show', $request->category);
     }
+
 }

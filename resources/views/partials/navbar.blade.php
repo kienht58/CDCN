@@ -16,7 +16,7 @@
                 <li id="nav-division"><a href="#" id="row-content">FAQs</a>
                 @if (Auth::check())
                     @if (Auth::user()->role == "admin")
-                        <li id="nav-division"><a href="#" id="row-content">Create new post</a>
+                        <li id="nav-division"><a href="{{ url('/admin/game/create') }}" id="row-content">Create new post</a>
                     @endif
                 @endif
             </ul>

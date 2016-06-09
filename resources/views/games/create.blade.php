@@ -32,8 +32,8 @@ Create new game
 				{!! Form::textarea('recommendRequirement', '', [ 'class' => 'form-control', 'required']) !!}
 			</div>
 			<div class="form-group">
-				{!! Form::label('genre', 'Genre', [ 'class' => 'control-label' ]) !!}
-				{!! Form::text('genre', '', [ 'class' => 'form-control']) !!}
+				{!! Form::label('category', 'Category', [ 'class' => 'control-label' ]) !!}
+				{!! Form::select('category', $categories, null, [ 'class' => 'form-control' ]) !!}
 			</div>
 			<div class="form-group">
 				{!! Form::label('releaseTime', 'Release Time', [ 'class' => 'control-label' ]) !!}
@@ -51,4 +51,5 @@ Create new game
 		</div>
 	</div>
 </div>
+
 @stop

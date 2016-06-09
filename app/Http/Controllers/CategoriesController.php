@@ -7,13 +7,14 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\Models\Category;
+use App\Models\Game;
 
 class CategoriesController extends Controller
 {
     public function show($category_id) {
     	$categories = Category::all();
     	$category = $categories->find($category_id);
-    	$posts = $category->posts;
-    	return view('categories/show', compact('categories', 'category', 'posts'));
+    	$games = Game::where('category', $category_id)->get();
+    	return view('categories.show', compact('categories', 'category', 'games'));
     }
 }

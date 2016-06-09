@@ -18,7 +18,7 @@ class CreateGamesTable extends Migration
             $table->text('description');
             $table->text('minimumRequirement');
             $table->text('recommendRequirement');
-            $table->text('genre');
+            $table->integer('category');
             $table->timestamp('releaseTime');
             $table->string('downloadLink');
             $table->integer('downloads')->unsigned()->default(0);
