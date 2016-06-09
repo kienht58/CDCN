@@ -67,8 +67,13 @@ class AuthController extends Controller
      * @param  array  $data
      * @return User
      */
-    protected function create(array $data)
+    protected function create(Request $request)
     {
+        $avatar = $request->file('avatar');
+        $destinationPath = "uploads/logo";
+        $fileName = "ava".$request->username;
+        $success = $avatar.move($destinationPath, $fileName);
+
         return User::create([
             'username' => $data['username'],
             'email' => $data['email'],
@@ -98,7 +103,7 @@ class AuthController extends Controller
             );
         }
 
-        $user = $this->create($request->all());
+        $user = $this->create($request);
 
         $data = [
             'username' => $user->username,

@@ -97,3 +97,7 @@ td{
 #content {
 	min-height: 510px;
 }
+
+#showAvatar {
+	margin-top: 5px;
+}

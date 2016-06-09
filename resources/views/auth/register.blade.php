@@ -11,7 +11,7 @@ Register
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}" enctype="multipart/form-data">
                         {!! csrf_field() !!}
 
                         <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
@@ -71,6 +71,20 @@ Register
                         </div>
 
                         <div class="form-group">
+                            <label class="col-md-4 control-label">Avatar</label>
+
+                            <div class="col-md-6">
+                                <input type="file" id="avatar" name="avatar" required="" style="display:none" accept="image/*" onchange="handleFiles(this.files)">
+                                <button class="btn btn-primary" id="fileSelect">
+                                    <i class="icon-upload-cloud-1"></i>Thêm ảnh đại diện
+                                </button>
+                                <div id="showAvatar" style="margin-top:5px">
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-user"></i> Register
@@ -83,4 +97,36 @@ Register
         </div>
     </div>
 </div>
+<script type="text/javascript">
+
+    var fileSelect = document.getElementById("fileSelect"),
+        fileElem = document.getElementById("avatar");
+
+    fileSelect.addEventListener("click", function (e) {
+        if (fileElem) {
+            fileElem.click();
+        }
+        e.preventDefault(); // prevent navigation to "#"
+    }, false);
+
+    function handleFiles(files) {
+        if (files.length) {                       
+            var img = document.createElement("img");
+            img.src = window.URL.createObjectURL(files[0]);
+            img.setAttribute("class", "img-control");
+            img.setAttribute("id", "showAvatar");
+            img.height = 150;
+            img.width = 150;
+            img.onload = function() {
+                window.URL.revokeObjectURL(this.src);
+            }
+            showAvatar = document.getElementById("showAvatar");
+            while (showAvatar.firstChild) {
+                showAvatar.removeChild(showAvatar.firstChild);
+            }
+            showAvatar.appendChild(img);
+        }
+    }
+</script>
 @endsection
+

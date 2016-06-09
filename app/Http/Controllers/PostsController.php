@@ -8,15 +8,16 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\Category;
 use App\Models\Review;
+use App\Models\Game;
+use App\Models\Post;
 
 class PostsController extends Controller
 {
     public function show($category_id, $post_id) {
     	$categories = Category::all();
-    	$post = $categories->find($category_id)->posts->find($post_id);
-    	$game = $post->game;
-    	$reviews = $post->reviews;
-    	return view('posts.show', compact('category_id', 'categories', 'post', 'game', 'reviews'));
+    	$game = Game::find($post_id);
+    	$reviews = Review::where('post_id', $post_id)->get();
+    	return view('posts.show', compact('category_id', 'categories', 'game', 'reviews'));
     }
 
     public function storeReview(Request $request) {
@@ -25,6 +26,6 @@ class PostsController extends Controller
     	$review->post_id = $request->input('post_id');
     	$review->save();
 
-        return response()->json(['content' => $review->content]);
+        return redirect()->back();
     }
 }

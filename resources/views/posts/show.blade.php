@@ -1,18 +1,19 @@
 @extends('layout.layout')
 
-@section('title')
-<title>{{$game->name}}</title>
+@section('head.title')
+{{$game->name}}
 @stop
 
-@section('content')
+@section('body.content')
 <div class="container">
     <div class="row">
         <ul>
             <li>{{$game->description}}</li>
             <li>{{$game->minimumRequirement}}</li>
             <li>{{$game->recommendRequirement}}</li>
-            <li>{{$game->genre}}</li>
+            <li>{{$game->category}}</li>
             <li>{{$game->releaseTime}}</li>
+            <li>{{$game->downloadLink}}</li>
         </ul>
     </div>
 </div>
@@ -26,13 +27,13 @@
             @endforeach
         </ul>
         {!! Form::open([
-            'route'  => ['post.storeReview', $category_id, $post->id],
+            'route'  => ['post.storeReview', $category_id, $game->id],
             'method' => 'POST',
             'class'  => 'form-horizontal',
             'id'     => 'review'
         ])
         !!}
-        <input type="hidden" name="post_id" id="post_id" value="{{$post->id}}">
+        <input type="hidden" name="post_id" id="post_id" value="{{$game->id}}">
 
         <div class="form-group">
             {!! Form::label('Review', 'Review', [ 'class' => 'control-label' ]) !!}
