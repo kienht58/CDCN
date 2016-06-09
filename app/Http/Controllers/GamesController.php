@@ -25,8 +25,7 @@ class GamesController extends Controller
     	$request->releaseTime = Carbon::createFromFormat('Y-m-d', $request->releaseTime);
         $data = $request->except('_method', '_token');
         $game = Game::create($data);
-        return $data;
-    	// return redirect()->route('categories.show', $request->category);
+    	return redirect()->route('categories.show', $request->category);
     }
 
 }

@@ -1,15 +1,14 @@
 @extends('layout.layout')
 
-@section('title')
+@section('head.title')
 <title>{{$category->name}}</title>
 @stop
 
-@section('content')
+@section('body.content')
 	<div class="row">
-	echo($game);
 	@foreach($games as $game)
 		<div class="col-md-4">
-			<a href="#">Game {{$game->name}}</a>
+			<a href="#">{{$game->name}}</a>
 		</div>
 	@endforeach
 	</div>

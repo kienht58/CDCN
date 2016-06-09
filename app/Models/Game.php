@@ -13,7 +13,7 @@ class Game extends Model
     	'description',
     	'minimumRequirement',
     	'recommendRequirement',
-    	'genre',
+    	'category',
     	'releaseTime',
     	'downloadLink'
     ];
