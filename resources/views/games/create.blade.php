@@ -1,16 +1,10 @@
 @extends('layout.layout')
 
-@section('title')
-<title>Create new game</title>
-@stop
+@section('head.title')
+Create new game
+@endsection
 
-@section('list-categories')
-@foreach($categories as $category)
-<li role="presentation"><a role="menuitem" href="{{ route('categories.show', $category->id) }}">{{$category->name}}</a></li>
-@endforeach
-@stop
-
-@section('content')
+@section('body.content')
 <div class="container">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">

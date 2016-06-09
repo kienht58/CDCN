@@ -93,3 +93,7 @@ td{
     text-align: center;
 
 }
+
+#content {
+	min-height: 510px;
+}

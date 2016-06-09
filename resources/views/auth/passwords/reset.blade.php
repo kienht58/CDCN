@@ -1,6 +1,10 @@
-@extends('layouts.app')
+@extends('layout.layout')
 
-@section('content')
+@section('head.title')
+Reset password
+@endsection
+
+@section('body.content')
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">

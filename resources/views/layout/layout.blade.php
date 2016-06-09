@@ -9,19 +9,21 @@
     <title>@yield('head.title')</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="{{ URL::asset('assets/css/bootstrap.min.css') }}" >
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bangers"  type="text/css">
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="assets/css/carousel.css" >
-    <link rel="stylesheet" href="assets/css/custom.css">
-    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="{{ URL::asset('assets/css/carousel.css') }}" >
+    <link rel="stylesheet" href="{{ URL::asset('assets/css/custom.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/css/footer.css') }}">
 </head>
 <body id="app-layout">
 	@include('partials.navbar')
-	@yield('body.content')
+	<div id="content">
+        @yield('body.content')
+    </div>
 	@include('partials.footer')
-	<script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+	<script src="{{ URL::asset('assets/js/jquery.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/bootstrap.min.js') }}"></script>
 </body>
 </html>
