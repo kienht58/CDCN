@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ URL::asset('assets/css/bootstrap.min.css') }}" >
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bangers"  type="text/css">
+    <link rel="stylesheet" href="{{ URL::asset('assets/css/star-rating.min.css') }}" >
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="{{ URL::asset('assets/css/carousel.css') }}" >
     <link rel="stylesheet" href="{{ URL::asset('assets/css/custom.css') }}">
@@ -27,5 +28,7 @@
 	<script src="{{ URL::asset('assets/js/jquery.min.js') }}"></script>
     <script src="{{ URL::asset('assets/js/bootstrap.min.js') }}"></script>
     <script src="{{ URL::asset('assets/js/select2.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/star-rating.min.js') }}"></script>
+    @yield('body.script')
 </body>
 </html>

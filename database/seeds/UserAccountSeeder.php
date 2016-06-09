@@ -20,13 +20,5 @@ class UserAccountSeeder extends Seeder
             'active' => 1,
             'role' => 'admin'
         ]);
-        User::create([
-            'username' => 'loiprovd193',
-            'email' => 'nguyenphucloi193@gmail.com',
-            'password' => bcrypt('phucloi193'),
-            'activation_code' => 'Youdabest',
-            'active' => 1,
-            'role' => 'user'
-        ]);
     }
 }

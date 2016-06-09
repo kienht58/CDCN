@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('activation_code');
             $table->boolean('active')->default(0);
             $table->string('role');
+            $table->string('avatar');
             $table->rememberToken();
             $table->timestamps();
         });

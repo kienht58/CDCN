@@ -11,7 +11,6 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="nav-mid">
-                <li id="nav-division"><a href="#" id="row-content">Introduction</a>
                 <li id="nav-division"><a href="#" id="row-content">Categories</a>
                 <li id="nav-division"><a href="#" id="row-content">FAQs</a>
                 @if (Auth::check())

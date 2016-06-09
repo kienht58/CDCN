@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\Review;
 use App\Models\Game;
 use App\Models\Post;
+use Auth;
 
 class PostsController extends Controller
 {
@@ -21,9 +22,12 @@ class PostsController extends Controller
     }
 
     public function storeReview(Request $request) {
+        //dd($request->all());
     	$review = new Review;
     	$review->content = $request->input('content');
     	$review->post_id = $request->input('post_id');
+        $review->rating = $request->input('rating');
+        $review->user_id = Auth::user()->id;
     	$review->save();
 
         return redirect()->back();

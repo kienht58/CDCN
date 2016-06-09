@@ -37,6 +37,7 @@
 
         <div class="form-group">
             {!! Form::label('Review', 'Review', [ 'class' => 'control-label' ]) !!}
+            <input id="rating" class="rating-loading" value="2" data-size="xs" name="rating">
             {!! Form::text('content', '', ['id' => 'reviewContent', 'class' => 'form-control', 'required']) !!}
         </div>
 
@@ -46,8 +47,10 @@
         {!! Form::close() !!}
     </div>
 </div>
+@stop
 
-<script>
+@section('body.script')
+<script type="text/javascript">
     $(document).ready(function(){
         $('#review').on('submit', function(e) {
             e.preventDefault();   
@@ -68,6 +71,12 @@
                 }
             }); 
         });
+    });
+
+    $('#rating').rating({
+        step: 1,
+        starCaptions: {1: 'Very Poor', 2: 'Poor', 3: 'Ok', 4: 'Good', 5: 'Very Good'},
+        starCaptionClasses: {1: 'text-danger', 2: 'text-warning', 3: 'text-info', 4: 'text-primary', 5: 'text-success'}
     });
 </script>
 @stop

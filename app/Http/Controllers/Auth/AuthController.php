@@ -69,17 +69,23 @@ class AuthController extends Controller
      */
     protected function create(Request $request)
     {
-        $avatar = $request->file('avatar');
-        $destinationPath = "uploads/logo";
-        $fileName = "ava".$request->username;
-        $success = $avatar.move($destinationPath, $fileName);
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $destinationPath = "upload/avatar";
+            $fileName = $request->username . $avatar->getClientOriginalName();
+            $success = $avatar->move($destinationPath, $fileName);
+        }
+        else {
+            $fileName = "avadefault.png";
+        }
 
         return User::create([
-            'username' => $data['username'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'activation_code' => str_random(60) .  $data['email'],
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'activation_code' => str_random(60) .  $request->email,
             'role' => 'user',
+            'avatar' => $fileName,
         ]);
     }
 

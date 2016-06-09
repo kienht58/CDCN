@@ -74,7 +74,7 @@ Register
                             <label class="col-md-4 control-label">Avatar</label>
 
                             <div class="col-md-6">
-                                <input type="file" id="avatar" name="avatar" required="" style="display:none" accept="image/*" onchange="handleFiles(this.files)">
+                                <input type="file" id="avatar" name="avatar" style="display:none" accept="image/*" onchange="handleFiles(this.files)">
                                 <button class="btn btn-primary" id="fileSelect">
                                     <i class="icon-upload-cloud-1"></i>Thêm ảnh đại diện
                                 </button>

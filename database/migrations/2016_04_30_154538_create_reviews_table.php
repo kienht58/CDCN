@@ -14,7 +14,7 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('owner');
+            $table->integer('user_id');
             $table->text('content');
             $table->integer('post_id');
             $table->integer('rating')->unsigned();
