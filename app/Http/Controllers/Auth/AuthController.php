@@ -115,6 +115,7 @@ class AuthController extends Controller
 
     public function doRegister(Request $request)
     {
+        //dd($request);
         $validator = $this->validator($request->all());
 
         if ($validator->fails()) {

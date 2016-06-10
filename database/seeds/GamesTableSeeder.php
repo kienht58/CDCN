@@ -28,7 +28,7 @@ class GamesTableSeeder extends Seeder
 									Free Disk Space:	12 GB',
 			'category' => '1',
 			'releaseTime' => Carbon::now(),
-			'downloadLink' => 'http://lienminh.garena.vn/download',
+			'downloadLink' => 'http://cdn.ved.com.vn/gamevn/lmht/LienMinhHuyenThoai.160607.rar',
 			'size' => '5.5'
         ]);
 

@@ -15,7 +15,8 @@ class CreatePhotosTable extends Migration
         Schema::create('photos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('game_id');
-            $table->text('name');
+            $table->text('path');
+            $table->boolean('isAvatar')->default(false);
             $table->timestamps();
         });
     }

@@ -44,9 +44,13 @@ Create new game
 				{!! Form::text('downloadLink', '', [ 'class' => 'form-control']) !!}
 			</div>
 			<div class="form-group">
+				{!! Form::label('size', 'Size (GB)', [ 'class' => 'control-label' ]) !!}
+				{!! Form::text('size', '', [ 'class' => 'form-control']) !!}
+			</div>
+			<div class="form-group">
                 <label class="control-label">Image</label>
                 <div class="">
-                    <input type="file" id="fileElem" required="" style="display:none" multiple accept="image/*"  onchange="handleFiles(this.files)">
+                    <input type="file" id="fileElem" required="" style="display:none" name="photo[]" multiple accept="image/*"  onchange="handleFiles(this.files)">
                     <button class="btn btn-primary" id="fileSelect">
                         <i class="icon-upload-cloud-1"></i>Thêm ảnh
                     </button>

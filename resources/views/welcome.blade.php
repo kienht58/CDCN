@@ -64,7 +64,7 @@ Link Never Die
         <div class="col-lg-4">
           <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
           <h2>{{$popular_game->name}}</h2>
-          <p>{{$popular_game->description}}</p>
+          <p>{{substr($popular_game->description, 0, strpos($popular_game->description, ' ', 50))}}...</p>
           <p><a class="btn btn-default" href="{{route('post.show', [$popular_game->category, $popular_game->id])}}" role="button">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         @endforeach
@@ -78,8 +78,8 @@ Link Never Die
       <div class="row featurette">
         <div class="col-md-7">
           <h2 class="featurette-heading">Most downloaded game.</h2>
-          <a href="#">{{$most_downloaded_game->name}}</a>
-          <p class="lead">{{$most_downloaded_game->description}}</p>
+          <a href="{{route('post.show', [$most_downloaded_game->category, $most_downloaded_game->id])}}">{{$most_downloaded_game->name}}</a>
+          <p class="lead">{{substr($most_downloaded_game->description, 0, strpos($most_downloaded_game->description, ' ', 100))}}...</p>
         </div>
         <div class="col-md-5">
           <a href="{{route('post.show', [$most_downloaded_game->category, $most_downloaded_game->id])}}"><img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image"></a>
@@ -91,8 +91,8 @@ Link Never Die
       <div class="row featurette">
         <div class="col-md-7 col-md-push-5">
           <h2 class="featurette-heading">Newest game.</h2>
-          <a href="#">{{$recent_game->name}}</a>
-          <p class="lead">{{$recent_game->description}}</p>
+          <a href="{{route('post.show', [$recent_game->category, $recent_game->id])}}">{{$recent_game->name}}</a>
+          <p class="lead">{{substr($recent_game->description, 0, strpos($recent_game->description, ' ', 100))}}...</p>
         </div>
         <div class="col-md-5 col-md-pull-7">
           <a href="{{route('post.show', [$recent_game->category, $recent_game->id])}}"><img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image"></a>
@@ -104,8 +104,8 @@ Link Never Die
       <div class="row featurette">
         <div class="col-md-7">
           <h2 class="featurette-heading">Incomming...</h2>
-          <a href="#">{{$future->name}}</a>
-          <p class="lead">{{$future->description}}</p>
+          <a href="{{route('post.show', [$future->category, $future->id])}}">{{$future->name}}</a>
+          <p class="lead">{{substr($future->description, 0, strpos($future->description, ' ', 100))}}...</p>
         </div>
         <div class="col-md-5">
           <a href="{{route('post.show', [$future->category, $future->id])}}"><img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image"></a>

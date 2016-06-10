@@ -37,25 +37,18 @@
                             <div class="col-xs-7">
                                 <span style="font-family: 'Bangers';padding-left: 10px;"> MEDIA GALLERY </span>
                                 <div id="myCarousel" class="carousel slide" style="margin-top:30px;">
-                                  <!-- Carousel items -->
-                                  <div class="carousel-inner">
-                                    <div class="active item">
-                                      <iframe width="650" height="338" src="https://www.youtube.com/embed/glo7AzNq8YY" frameborder="0" allowfullscreen>
-                                      </iframe>
-                                  </div>
-                                  <div class="item">
-                                      <img src="https://images-1.gog.com/fd7c9b743b1f572b8fd632a128af3f4e3da01bcf722a89ebe06d53dc575715cb_product_card_screenshot_600.jpg" width="652" height="338"/>
-                                  </div>
-                                  <div class="item">
-                                      <img src="https://images-1.gog.com/ab3a940de6909e3a158ada6e97ab52209ba553eb51cef4c88e316191573df1f6_product_card_screenshot_600.jpg" width="652" height="338"/>
-                                  </div>
-                                  <div class="item">
-                                      <img src="https://images-1.gog.com/2f165f28005b9a1cd2f6150e1c6e726c5725b657daa61adef794cd5f716094a7_product_card_screenshot_600.jpg" width="652" height="338"/>
-                                  </div>
-                                  <div class="item">
-                                      <img src="https://images-1.gog.com/4e4fa3151d55f09c181a8bb94001d8b51a04b43f654e030a548f549167519058_product_card_screenshot_600.jpg" width="652" height="338"/>
-                                  </div>
-                              </div>
+                                    <!-- Carousel items -->
+                                    <div class="carousel-inner">
+                                    @foreach($photos as $photo)
+                                    @if ($photo->isAvatar)
+                                        <div class="item active">
+                                    @else
+                                        <div class="item">
+                                    @endif
+                                        <img src="{{asset('upload/game/'.$game->name.'/'.$photo->path)}}" width="652" height="338"/>
+                                    </div>
+                                    @endforeach
+                                </div>
 
                               <!-- Carousel nav -->
                               <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
@@ -144,7 +137,7 @@
                             <div style="margin-top: 30px;width: 400px;height: 135px; position: relative;padding: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
 
                                 <span style="font-family:'Bangers';font-size:40px;"> {{$game->size}} GB </span>
-                                <span style="font-family:'Bangers';position: absolute;right: 5px;top: 18px;"><a href="http://{{$game->downloadLink}}"><button class="btn btn-success" style="width:204px;height: 40px;font-size:20px">Download</button></a></span>
+                                <span style="font-family:'Bangers';position: absolute;right: 5px;top: 18px;"><a href="{{$game->downloadLink}}"><button class="btn btn-success" style="width:204px;height: 40px;font-size:20px">Download</button></a></span>
                                 <hr style="margin:0px;padding: 0px;">
                                 <div style="position: absolute;bottom:10px;">
                                     <ul>

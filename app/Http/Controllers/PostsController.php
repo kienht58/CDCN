@@ -18,6 +18,7 @@ class PostsController extends Controller
     public function show($category_id, $post_id) {
     	$categories = Category::all();
     	$game = Game::find($post_id);
+        $photos = DB::table('photos')->where('game_id', $post_id)->get();
     	$reviews = DB::table('reviews')
                     ->join('users', 'reviews.user_id', '=', 'users.id')
                     ->select('reviews.*', 'users.username', 'users.avatar')
@@ -34,7 +35,7 @@ class PostsController extends Controller
         }
         //dd($reviews);
         $related_games = Game::where('name', 'like', 'Witcher%')->get();
-    	return view('posts.show', compact('post_id','category_id','categories', 'averageRate', 'game', 'reviews', 'related_games'));
+    	return view('posts.show', compact('post_id','category_id','categories', 'averageRate', 'game', 'reviews', 'related_games', 'photos'));
     }
 
 
