@@ -143,7 +143,7 @@
                         <div>
                             <div style="margin-top: 30px;width: 400px;height: 135px; position: relative;padding: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
 
-                                <span style="font-family:'Bangers';font-size:40px;"> 17 GB </span>
+                                <span style="font-family:'Bangers';font-size:40px;"> {{$game->size}} GB </span>
                                 <span style="font-family:'Bangers';position: absolute;right: 5px;top: 18px;"><a href="http://{{$game->downloadLink}}"><button class="btn btn-success" style="width:204px;height: 40px;font-size:20px">Download</button></a></span>
                                 <hr style="margin:0px;padding: 0px;">
                                 <div style="position: absolute;bottom:10px;">

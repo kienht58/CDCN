@@ -15,6 +15,7 @@ class Game extends Model
     	'recommendRequirement',
     	'category',
     	'releaseTime',
-    	'downloadLink'
+    	'downloadLink',
+        'size'
     ];
 }

@@ -13,13 +13,13 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         Category::create([
+        	'name' => 'MOBA'
+        ]);
+        Category::create([
         	'name' => 'Action'
         ]);
         Category::create([
-        	'name' => 'XXX'
-        ]);
-        Category::create([
-        	'name' => 'YYY'
+        	'name' => 'RPG'
         ]);
     }
 }

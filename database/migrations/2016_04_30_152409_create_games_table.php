@@ -21,6 +21,7 @@ class CreateGamesTable extends Migration
             $table->integer('category');
             $table->timestamp('releaseTime');
             $table->string('downloadLink');
+            $table->float('size');
             $table->integer('downloads')->unsigned()->default(0);
             $table->integer('views')->unsigned()->default(0);
             $table->timestamps();
