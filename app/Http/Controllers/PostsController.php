@@ -17,13 +17,14 @@ class PostsController extends Controller
     	$categories = Category::all();
     	$game = Game::find($post_id);
     	$reviews = Review::where('post_id', $post_id)->get();
-    	return view('posts.show', compact('category_id', 'categories', 'game', 'reviews'));
+        $related_games = Game::where('name', 'like', 'Witcher%')->get();
+    	return view('posts.show', compact('post_id','category_id','categories', 'game', 'reviews', 'related_games'));
     }
 
-    public function storeReview(Request $request) {
+    public function storeReview(Request $request, $post_id) {
     	$review = new Review;
     	$review->content = $request->input('content');
-    	$review->post_id = $request->input('post_id');
+    	$review->post_id = $post_id;
     	$review->save();
 
         return redirect()->back();

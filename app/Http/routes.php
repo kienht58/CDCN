@@ -16,6 +16,14 @@ Route::get('/', [
 	'uses' => 'DashboardController@index'
 ]);
 
+Route::get('/intro', function() {
+	return view('intro.intro');
+});
+
+Route::get('/faq', function() {
+	return view('faq.faq');
+});
+
 Route::group(['prefix' => 'categories'], function() {
 	Route::get('/{category_id}', [
 		'as' => 'categories.show',

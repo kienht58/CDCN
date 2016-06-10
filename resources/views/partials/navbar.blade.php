@@ -11,9 +11,15 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav" id="nav-mid">
-                <li id="nav-division"><a href="#" id="row-content">Introduction</a>
-                <li id="nav-division"><a href="#" id="row-content">Categories</a>
-                <li id="nav-division"><a href="#" id="row-content">FAQs</a>
+                <li id="nav-division"><a href="{{url('/intro')}}" id="row-content">Introduction</a>
+                <li id="nav-division" class="dropdown">
+                    <a id="row-content" class="dropdown-toggle" data-toggle="dropdown">Categories<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        @foreach($categories as $category)
+                        <li><a href="{{route('categories.show', $category->id)}}">{{$category->name}}</a></li>
+                        @endforeach
+                    </ul>
+                <li id="nav-division"><a href="{{url('/faq')}}" id="row-content">FAQs</a>
                 @if (Auth::check())
                     @if (Auth::user()->role == "admin")
                         <li id="nav-division"><a href="{{ url('/admin/game/create') }}" id="row-content">Create new post</a>

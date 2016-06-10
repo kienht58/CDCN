@@ -2,7 +2,7 @@
 
 @section('head.title')
 Login
-@endsection
+@stop
 
 @section('body.content')
 <div class="container">
