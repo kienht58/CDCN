@@ -101,3 +101,17 @@ td{
 #showAvatar {
 	margin-top: 5px;
 }
+
+#fileList ul{
+    list-style-type: none;
+}
+
+#fileList ul > li {
+    display: inline;
+    margin: 10px 10px;
+}
+
+#fileList ul > li:hover {
+    opacity: .5;
+    transition: all .5s ;
+}

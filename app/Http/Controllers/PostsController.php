@@ -23,10 +23,18 @@ class PostsController extends Controller
                     ->select('reviews.*', 'users.username', 'users.avatar')
                     ->where('reviews.post_id', $post_id)
                     ->get();
-
+        $averageRate = 0;
+        $counter = 0;
+        foreach($reviews as $review) {
+            $averageRate += $review->rating;
+            $counter++;
+        }
+        if ($counter > 0) {
+            $averageRate = round($averageRate / $counter);
+        }
         //dd($reviews);
         $related_games = Game::where('name', 'like', 'Witcher%')->get();
-    	return view('posts.show', compact('post_id','category_id','categories', 'game', 'reviews', 'related_games'));
+    	return view('posts.show', compact('post_id','category_id','categories', 'averageRate', 'game', 'reviews', 'related_games'));
     }
 
 
@@ -37,6 +45,7 @@ class PostsController extends Controller
     	$review->post_id = $request->input('post_id');
         $review->rating = $request->input('rating');
         $review->user_id = Auth::user()->id;
+        $review->save();
         return redirect()->back();
     }
 }

@@ -11,15 +11,16 @@
       <div class="title-wrapper">
         <div style="padding-left: 100px;padding-top: 100px;position: relative;">
             <span style="font-family: 'Bangers';font-size: 50px;">
-                The Witcher 3: Wild Hunt
+                {{$game->name}}
             </span>
             <div>
                 <span style="padding-left: 10px;margin-right: 10px;">
+                    @for ($i = 0; $i < $averageRate; $i++)
                     <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
+                    @endfor
+                    @for ($i = $averageRate; $i < 5; $i++)
                     <span class="glyphicon glyphicon-star-empty"></span>
+                    @endfor
                 </span>|
                 <span style="margin-left: 10px;font-family:'Bangers';margin-right: 10px;">
                     Windows
@@ -86,7 +87,7 @@
                             </div> -->
                             <div class="tab-content" style="font-family: 'Open Sans';">
                                 <div id="home" class="tab-pane fade in active">
-                                    <table class="table">
+                                    <table class="table" id="tableReview">
                                         <tr style="position: relative;">
                                             <td style="position: relative;">
                                                 <div style="padding-top: 10px;">
@@ -94,6 +95,7 @@
                                                         <blockquote>
                                                             {!! Form::open([ 'route' => ['post.storeReview', $category_id, $game->id, $post_id], 'method' => 'POST', 'class' => 'form-horizontal', 'id' => 'review' ]) !!}
                                                             <div class="form-group">
+                                                                <input type="hidden" name="post_id" id="post_id" value="{{$post_id}}">
                                                                 {!! Form::label('Review', 'Review', [ 'class' => 'control-label' ]) !!}
                                                                 <input id="rating" class="rating-loading" value="2" data-size="xs" name="rating">
                                                                 {!! Form::text('content', '', ['id' => 'reviewContent', 'class' => 'form-control', 'required']) !!}
@@ -258,36 +260,9 @@
     </div>
 </div>
 @stop
-=======
-</div>      
-
-</div>
-<!-- -->
 
 @section('body.script')
 <script type="text/javascript">
-    $(document).ready(function(){
-        $('#review').on('submit', function(e) {
-            e.preventDefault();   
-            var reviewContent = $('#reviewContent').val();  
-            var token = '{{ csrf_token()}}';
-            var post_id = $('#post_id').val();
-            $.ajax({
-                type: "POST",
-                url: window.location.href,
-                data: {content: reviewContent, _token: token, post_id: post_id},
-                success: function(response){
-                    console.log("Done");
-                    $('#list-review').append("<li>" + response.content + "</li>");
-                    $('#reviewContent').val('');
-                }, 
-                error: function(response){
-                    console.log("Error");
-                }
-            }); 
-        });
-    });
-
     $('#rating').rating({
         step: 1,
         starCaptions: {1: 'Very Poor', 2: 'Poor', 3: 'Ok', 4: 'Good', 5: 'Very Good'},

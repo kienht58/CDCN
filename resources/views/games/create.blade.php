@@ -33,7 +33,7 @@ Create new game
 			</div>
 			<div class="form-group">
 				{!! Form::label('category', 'Category', [ 'class' => 'control-label' ]) !!}
-				{!! Form::select('category', $categories, null, [ 'class' => 'form-control' ]) !!}
+				{!! Form::select('category', $categoriesList, null, [ 'class' => 'form-control' ]) !!}
 			</div>
 			<div class="form-group">
 				{!! Form::label('releaseTime', 'Release Time', [ 'class' => 'control-label' ]) !!}
@@ -43,6 +43,19 @@ Create new game
 				{!! Form::label('downloadLink', 'Link download', [ 'class' => 'control-label' ]) !!}
 				{!! Form::text('downloadLink', '', [ 'class' => 'form-control']) !!}
 			</div>
+			<div class="form-group">
+                <label class="control-label">Image</label>
+                <div class="">
+                    <input type="file" id="fileElem" required="" style="display:none" multiple accept="image/*"  onchange="handleFiles(this.files)">
+                    <button class="btn btn-primary" id="fileSelect">
+                        <i class="icon-upload-cloud-1"></i>Thêm ảnh
+                    </button>
+                    <div id="fileList" style="margin-top: 5px">
+                        <ul id="listImage" style="list-style-type: none;"></ul>
+                    </div>
+                    <hr>
+                </div>
+            </div>
 
 			<div class="form-group">
 				{!! Form::submit('Create', [ 'class' => 'btn btn-primary pull-right' ])!!}
@@ -51,5 +64,46 @@ Create new game
 		</div>
 	</div>
 </div>
-
 @stop
+
+@section('body.script')
+<script>
+    window.URL = window.URL || window.webkitURL;
+    var fileSelect = document.getElementById("fileSelect"),
+        fileElem = document.getElementById("fileElem"),
+        fileList = document.getElementById("fileList");
+    fileSelect.addEventListener("click", function (e) {
+        if (fileElem) {
+            fileElem.click();
+        }
+        e.preventDefault(); // prevent navigation to "#"
+    }, false);
+    function handleFiles(files) {
+        if (files.length) {
+            var list = document.getElementById("listImage");
+            fileList.appendChild(list);
+            for (var i = 0; i < files.length; i++) {
+                var li = document.createElement("li");
+                li.setAttribute("style", "display: inline; margin: 10px 10px;")
+                list.appendChild(li);
+                          
+                var img = document.createElement("img");
+                img.src = window.URL.createObjectURL(files[i]);
+                img.setAttribute("class", "img-control");
+                img.height = 120;
+				img.width = 200;
+                img.onload = function() {
+                    window.URL.revokeObjectURL(this.src);
+                }
+                li.appendChild(img);
+            }
+        }
+    }  
+</script>
+<script>
+    $( document ).on( "click", ".img-control", function() {
+        //alert( 111 );
+        $(this).hide();
+    });
+</script>
+@endsection

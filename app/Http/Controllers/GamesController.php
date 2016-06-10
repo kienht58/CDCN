@@ -16,8 +16,9 @@ class GamesController extends Controller
 {
     public function create()
     {
-    	$categories = Category::all()->lists('name', 'id');
-    	return view('games.create', compact('categories'));
+        $categories = Category::all();
+    	$categoriesList = Category::all()->lists('name', 'id');
+    	return view('games.create', compact('categories', 'categoriesList'));
     }
 
     public function store(Request $request)
