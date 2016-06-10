@@ -104,9 +104,12 @@ class AuthController extends Controller
     }
 
     public function postLogin(Request $request)
-    {
+    { 
         $active = User::where('username', $request->username)->value('active');
-
+        //dd($active);
+        if ($active === null) {
+            return redirect()->back()->with('message', 'Tài khoản không tồn tại. Hãy đăng ký tài khoản mới');
+        }
         if ($active == 0) {
             return redirect()->back()->with('message', 'Chưa kích hoạt tài khoản. Kiểm tra lại email để kích hoạt');
         }

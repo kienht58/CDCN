@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ URL::asset('assets/css/custom.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/css/footer.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/css/select2.min.css') }}">
+    <link rel="shortcut icon" href="{{{ asset('favicon.ico') }}}">
 </head>
 <body id="app-layout">
 	@include('partials.navbar')

@@ -16,13 +16,15 @@ Route::get('/', [
 	'uses' => 'DashboardController@index'
 ]);
 
-Route::get('/intro', function() {
-	return view('intro.intro');
-});
+Route::get('/faq', [
+	'as' => 'faq',
+	'uses' => 'DashboardController@faq'
+]);
 
-Route::get('/faq', function() {
-	return view('faq.faq');
-});
+Route::get('/intro', [
+	'as' => 'intro',
+	'uses' => 'DashboardController@intro'
+]);
 
 Route::group(['prefix' => 'categories'], function() {
 	Route::get('/{category_id}', [
