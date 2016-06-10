@@ -14,7 +14,7 @@ Link Never Die
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
+          <img class="first-slide" src="{{asset('upload/lol.jpg')}}" alt="First slide">
           <div class="container">
             <div class="carousel-caption">
               <h1>xam le LND ver1.</h1>
@@ -23,7 +23,7 @@ Link Never Die
           </div>
         </div>
         <div class="item">
-          <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
+          <img class="second-slide" src="{{asset('upload/lol2.jpg')}}" alt="Second slide">
           <div class="container">
             <div class="carousel-caption">
               <h1>xam le LND ver2.</h1>
@@ -32,7 +32,7 @@ Link Never Die
           </div>
         </div>
         <div class="item">
-          <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
+          <img class="third-slide" src="{{asset('upload/lol3.jpg')}}" alt="Third slide">
           <div class="container">
             <div class="carousel-caption">
               <h1>xam le LND ver3.</h1>
