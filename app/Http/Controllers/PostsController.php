@@ -11,15 +11,24 @@ use App\Models\Review;
 use App\Models\Game;
 use App\Models\Post;
 use Auth;
+use DB;
 
 class PostsController extends Controller
 {
     public function show($category_id, $post_id) {
     	$categories = Category::all();
     	$game = Game::find($post_id);
-    	$reviews = Review::where('post_id', $post_id)->get();
-    	return view('posts.show', compact('category_id', 'categories', 'game', 'reviews'));
+    	$reviews = DB::table('reviews')
+                    ->join('users', 'reviews.user_id', '=', 'users.id')
+                    ->select('reviews.*', 'users.username', 'users.avatar')
+                    ->where('reviews.post_id', $post_id)
+                    ->get();
+
+        //dd($reviews);
+        $related_games = Game::where('name', 'like', 'Witcher%')->get();
+    	return view('posts.show', compact('post_id','category_id','categories', 'game', 'reviews', 'related_games'));
     }
+
 
     public function storeReview(Request $request) {
         //dd($request->all());
@@ -28,8 +37,6 @@ class PostsController extends Controller
     	$review->post_id = $request->input('post_id');
         $review->rating = $request->input('rating');
         $review->user_id = Auth::user()->id;
-    	$review->save();
-
         return redirect()->back();
     }
 }

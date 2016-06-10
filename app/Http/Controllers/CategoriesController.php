@@ -15,6 +15,6 @@ class CategoriesController extends Controller
     	$categories = Category::all();
     	$category = $categories->find($category_id);
     	$games = Game::where('category', $category_id)->get();
-    	return view('categories.show', compact('category', 'games'));
+    	return view('categories.show', compact('categories', 'category', 'games'));
     }
 }

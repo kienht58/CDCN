@@ -16,6 +16,14 @@ Route::get('/', [
 	'uses' => 'DashboardController@index'
 ]);
 
+Route::get('/intro', function() {
+	return view('intro.intro');
+});
+
+Route::get('/faq', function() {
+	return view('faq.faq');
+});
+
 Route::group(['prefix' => 'categories'], function() {
 	Route::get('/{category_id}', [
 		'as' => 'categories.show',
@@ -45,12 +53,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
 	]);
 });
 
-Route::get('login', 'Auth\AuthController@showLoginForm');
+Route::get('login', 'Auth\AuthController@showLoginForm_2');
 Route::post('login', 'Auth\AuthController@postLogin');
 Route::get('logout', 'Auth\AuthController@logout');
 
 // Registration Routes...
-Route::get('register', 'Auth\AuthController@showRegistrationForm');
+Route::get('register', 'Auth\AuthController@showRegistrationForm_2');
 Route::post('register', 'Auth\AuthController@doRegister');
 Route::get('activate/{code}', 'Auth\AuthController@activate');
 

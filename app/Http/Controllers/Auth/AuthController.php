@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Response;
 use Auth;
 use Mail;
+use App\Models\Category;
 
 class AuthController extends Controller
 {
@@ -87,6 +88,19 @@ class AuthController extends Controller
             'role' => 'user',
             'avatar' => $fileName,
         ]);
+    }
+
+    public function showLoginForm_2()
+    {
+        $categories = Category::all();
+
+        return view('auth.login', compact('categories'));
+    }
+
+    public function showRegistrationForm_2()
+    {
+        $categories = Category::all();
+        return view('auth.register', compact('categories'));
     }
 
     public function postLogin(Request $request)

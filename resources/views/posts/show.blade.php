@@ -5,49 +5,264 @@
 @stop
 
 @section('body.content')
+<!-- CONTENT -->
 <div class="container">
-    <div class="row">
-        <ul>
-            <li>{{$game->description}}</li>
-            <li>{{$game->minimumRequirement}}</li>
-            <li>{{$game->recommendRequirement}}</li>
-            <li>{{$game->category}}</li>
-            <li>{{$game->releaseTime}}</li>
-            <li>{{$game->downloadLink}}</li>
-        </ul>
-    </div>
-</div>
+  <div style="margin-top:50px;">
+      <div class="title-wrapper">
+        <div style="padding-left: 100px;padding-top: 100px;position: relative;">
+            <span style="font-family: 'Bangers';font-size: 50px;">
+                The Witcher 3: Wild Hunt
+            </span>
+            <div>
+                <span style="padding-left: 10px;margin-right: 10px;">
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                </span>|
+                <span style="margin-left: 10px;font-family:'Bangers';margin-right: 10px;">
+                    Windows
+                </span>|
+                <span style="margin-left: 10px; font-family:'Bangers'">
+                    English and more
+                </span>
+            </div>
+            <div>
+                <!-- 2 columns -->
+                <div style="margin-top:20px;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-7">
+                                <span style="font-family: 'Bangers';padding-left: 10px;"> MEDIA GALLERY </span>
+                                <div id="myCarousel" class="carousel slide" style="margin-top:30px;">
+                                  <!-- Carousel items -->
+                                  <div class="carousel-inner">
+                                    <div class="active item">
+                                      <iframe width="650" height="338" src="https://www.youtube.com/embed/glo7AzNq8YY" frameborder="0" allowfullscreen>
+                                      </iframe>
+                                  </div>
+                                  <div class="item">
+                                      <img src="https://images-1.gog.com/fd7c9b743b1f572b8fd632a128af3f4e3da01bcf722a89ebe06d53dc575715cb_product_card_screenshot_600.jpg" width="652" height="338"/>
+                                  </div>
+                                  <div class="item">
+                                      <img src="https://images-1.gog.com/ab3a940de6909e3a158ada6e97ab52209ba553eb51cef4c88e316191573df1f6_product_card_screenshot_600.jpg" width="652" height="338"/>
+                                  </div>
+                                  <div class="item">
+                                      <img src="https://images-1.gog.com/2f165f28005b9a1cd2f6150e1c6e726c5725b657daa61adef794cd5f716094a7_product_card_screenshot_600.jpg" width="652" height="338"/>
+                                  </div>
+                                  <div class="item">
+                                      <img src="https://images-1.gog.com/4e4fa3151d55f09c181a8bb94001d8b51a04b43f654e030a548f549167519058_product_card_screenshot_600.jpg" width="652" height="338"/>
+                                  </div>
+                              </div>
 
-<div class="container">
-    <div class="row">
-        <h3>Reviews</h3>
-        <ul id="list-review">
-            @foreach($reviews as $review)
-            <li>{{$review->content}}</li>
-            @endforeach
-        </ul>
-        {!! Form::open([
-            'route'  => ['post.storeReview', $category_id, $game->id],
-            'method' => 'POST',
-            'class'  => 'form-horizontal',
-            'id'     => 'review'
-        ])
-        !!}
-        <input type="hidden" name="post_id" id="post_id" value="{{$game->id}}">
+                              <!-- Carousel nav -->
+                              <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                              <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+                          </div>
+                          <div style="margin-top: 30px;">
+                            <span style="text-align: center; font-family: 'Bangers';font-size: 40px;color: white; text-shadow: 1px 1px 2px black, 0 0 25px black, 0 0 5px black;">
+                                <center>
+                                    Description
+                                </center>
+                            </span>
+                            <hr>
+                            <span style=" font-family:'Open Sans'; font-size: 15px;">
+                                {{$game->description}}
+                            </span>
+                            <hr>
+                        </div>
+                        <div style="margin-top: 30px">
+                            <span style="text-align: center; font-family: 'Bangers';font-size: 40px;color: white; text-shadow: 1px 1px 2px black, 0 0 25px black, 0 0 5px black;">
+                                <center>
+                                    Feedback
+                                </center>
+                            </span>
 
-        <div class="form-group">
-            {!! Form::label('Review', 'Review', [ 'class' => 'control-label' ]) !!}
-            <input id="rating" class="rating-loading" value="2" data-size="xs" name="rating">
-            {!! Form::text('content', '', ['id' => 'reviewContent', 'class' => 'form-control', 'required']) !!}
-        </div>
+                            <!-- <div class="form-group">
+                                {!! Form::label('Review', 'Review', [ 'class' => 'control-label' ]) !!}
+                                <input id="rating" class="rating-loading" value="2" data-size="xs" name="rating">
+                                {!! Form::text('content', '', ['id' => 'reviewContent', 'class' => 'form-control', 'required']) !!}
+                            </div> -->
+                            <div class="tab-content" style="font-family: 'Open Sans';">
+                                <div id="home" class="tab-pane fade in active">
+                                    <table class="table">
+                                        <tr style="position: relative;">
+                                            <td style="position: relative;">
+                                                <div style="padding-top: 10px;">
+                                                    <div style="padding: 10px;position:relative;">
+                                                        <blockquote>
+                                                            {!! Form::open([ 'route' => ['post.storeReview', $category_id, $game->id, $post_id], 'method' => 'POST', 'class' => 'form-horizontal', 'id' => 'review' ]) !!}
+                                                            <div class="form-group">
+                                                                {!! Form::label('Review', 'Review', [ 'class' => 'control-label' ]) !!}
+                                                                <input id="rating" class="rating-loading" value="2" data-size="xs" name="rating">
+                                                                {!! Form::text('content', '', ['id' => 'reviewContent', 'class' => 'form-control', 'required']) !!}
+                                                            </div>
+                                                            {!! Form::submit('Thêm', ['id' => 'submit', 'class' => 'btn btn-primary pull-right' ])!!}
+                                                            {!! Form::close() !!}
+                                                        </blockquote>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @foreach($reviews as $review)
+                                        <tr style="position: relative;">
+                                            <td style="position: relative;">
+                                                <div style="padding-top: 10px;">
+                                                    <div style="padding: 10px;position:relative;">
+                                                        <blockquote>
+                                                            {{$review->content}}
+                                                            <footer>
+                                                                <span><img style="border-radius: 50%; width:32px; height:32px;" src="{{URL::asset('upload/avatar/'.$review->avatar)}}" /> </span>
+                                                                <span style="font-family:'Bangers';margin-left: 5px;"> {{$review->username}} </span>
+                                                                <span style="margin-left: 10px;">
+                                                                    @for($i = 0; $i < $review->rating; $i++)
+                                                                    <span class="glyphicon glyphicon-star"></span>
+                                                                    @endfor
+                                                                    @for($i = 0; $i < 5 - $review->rating; $i++)
+                                                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                                                    @endfor
+                                                                </span>
+                                                            </footer>
+                                                        </blockquote>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            {!! Form::submit('Thêm', ['id' => 'submit', 'class' => 'btn btn-primary pull-right' ])!!}
+                    <div class="col-xs-4">
+                        <span style="font-family: 'Bangers';padding-left: 10px;"> DOWNLOAD ITEM </span>
+                        <div>
+                            <div style="margin-top: 30px;width: 400px;height: 135px; position: relative;padding: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+
+                                <span style="font-family:'Bangers';font-size:40px;"> 17 GB </span>
+                                <span style="font-family:'Bangers';position: absolute;right: 5px;top: 18px;"><a href="http://{{$game->downloadLink}}"><button class="btn btn-success" style="width:204px;height: 40px;font-size:20px">Download</button></a></span>
+                                <hr style="margin:0px;padding: 0px;">
+                                <div style="position: absolute;bottom:10px;">
+                                    <ul>
+                                        <li><span style="font-family: 'Bangers'"> Please read the instruction carefully </span></li>
+                                        <li><span style="font-family: 'Bangers'"> Do not copy post without adding source </span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style=" margin-top: 30px; padding-left: 10px;font-family: 'Bangers'">
+                            SIMILAR GAME
+                            
+                            <div>
+                                @foreach($related_games as $related)
+                                <div style="margin-top:11px;width: 400px;height:60px;position: relative; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                                    <span>
+                                        <img src="https://images-1.gog.com/37d4a208d1f5bb0e163da540ac894ba46a7d566ede31aaaefc74bbcd46ebd190_100.jpg" width="100px" height="60px">
+                                    </span>
+                                    <span style="position: absolute;top:10px; margin-left: 10px;">
+                                        {{$related->name}}
+                                    </span>
+                                    <span style="position: absolute;bottom:10px; margin-left: 10px;">
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                    </span>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <table class="table" style="font-family: 'Open Sans', sans-serif;">
+                                <tr>
+                                    <td>
+                                        GENRE
+                                    </td>
+                                    <td>
+                                        Role-playing - Adventure - Fantasy
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        WORK ON
+                                    </td>
+                                    <td>
+                                        Windows (7, 8, 10)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        LANGUAGES
+                                    </td>
+                                    <td>
+                                        Audio and text: Português do Brasil, Deutsch, English, français, 日本語, polski, русский. Text only: العربية, 中文, český, español, Español (AL), magyar, italiano, 한국어
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        FEATURE
+                                    </td>
+                                    <td>
+                                        single-player - achievements - controller support
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        RELEASE
+                                    </td>
+                                    <td>
+                                        May 19, 2015
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        COMPANY
+                                    </td>
+                                    <td>
+                                        CD PROJEKT RED / CD PROJEKT RED
+                                    </td>
+                                </tr>                               
+                            </table>
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <hr>
+                            <span style="font-family: 'Bangers'">
+                                <center>
+                                    Minimum system requirements - Windows: 
+                                </center>
+                            </span>
+                            <div style="font-family: 'Open Sans';margin-top: 10px;">
+                                {{$game->minimumRequirement}}
+                            </div>
+                            
+                            <span style="font-family: 'Bangers';">
+                                <center>
+                                    Recommended system requirements - Windows: 
+                                </center>
+                            </span>
+                            <div style="font-family: 'Open Sans';margin-top: 10px;">
+                                {{$game->recommendRequirement}}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
         {!! Form::close() !!}
     </div>
 </div>
 @stop
+=======
+</div>      
+
+</div>
+<!-- -->
 
 @section('body.script')
 <script type="text/javascript">
