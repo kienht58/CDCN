@@ -78,9 +78,11 @@
                                 <input id="rating" class="rating-loading" value="2" data-size="xs" name="rating">
                                 {!! Form::text('content', '', ['id' => 'reviewContent', 'class' => 'form-control', 'required']) !!}
                             </div> -->
+
                             <div class="tab-content" style="font-family: 'Open Sans';">
                                 <div id="home" class="tab-pane fade in active">
                                     <table class="table" id="tableReview">
+                                        @if (!Auth::guest())
                                         <tr style="position: relative;">
                                             <td style="position: relative;">
                                                 <div style="padding-top: 10px;">
@@ -100,6 +102,7 @@
                                                 </div>
                                             </td>
                                         </tr>
+                                        @endif
                                         @foreach($reviews as $review)
                                         <tr style="position: relative;">
                                             <td style="position: relative;">
@@ -137,10 +140,10 @@
                             <div style="margin-top: 30px;width: 400px;height: 135px; position: relative;padding: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
 
                                 <span style="font-family:'Bangers';font-size:40px;"> {{$game->size}} GB </span>
-                                @if (Auth::guest())
+                                @if (!Auth::guest())
                                 <span style="font-family:'Bangers';position: absolute;right: 5px;top: 18px;"><a href="{{$game->downloadLink}}"><button class="btn btn-success" style="width:204px;height: 40px;font-size:20px">Download</button></a></span>
                                 @else
-                                <p>You must login to download</p>
+                                <span style="font-family:'Bangers';position: absolute;right: 5px;top: 18px;"><a href="{{url('/login')}}"><button class="btn btn-success" style="width:204px;height: 40px;font-size:20px">Login to download</button></a></span>
                                 @endif
                                 <hr style="margin:0px;padding: 0px;">
                                 <div style="position: absolute;bottom:10px;">
