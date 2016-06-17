@@ -18,7 +18,8 @@ class UserAccountSeeder extends Seeder
             'password' => bcrypt('123'),
             'activation_code' => 'Youdabest',
             'active' => 1,
-            'role' => 'admin'
+            'role' => 'admin',
+            'avatar' => 'avadefault.png'
         ]);
     }
 }
