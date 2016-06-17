@@ -32,7 +32,7 @@ class GamesController extends Controller
 
         if ($request->hasFile('photo')) {
             $photos = $request->file('photo');
-            $destinationPath = "upload/game/" . $request->name;
+            $destinationPath = "upload/game/" . $game->id;
             $counter = 0;
             foreach($photos as $photo) {
                 $fileName = $photo->getClientOriginalName();
@@ -52,4 +52,18 @@ class GamesController extends Controller
     	return redirect()->route('categories.show', $request->category);
     }
 
+    public function edit($game_id) 
+    {
+        $categories = Category::all();
+        $categoriesList = Category::all()->lists('name', 'id');
+        $game = Game::find($game_id);
+        return view('games.edit', compact('categories', 'categoriesList', 'game'));
+    }
+
+    public function update(Request $request, $game_id)
+    {
+        $game = Game::find($game_id);
+        $game->update($request->except('_method', '_token'));
+        return redirect()->route('post.show', [$game->category, $game_id]);
+    }
 }

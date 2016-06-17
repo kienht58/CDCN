@@ -62,7 +62,7 @@ Link Never Die
       <div class="row">
       	@foreach($popular_games as $popular_game)
         <div class="col-lg-4">
-          <img class="img-circle" src="{{asset('upload/game/'.$popular_game->name.'/'.$popular_game->path)}}" alt="Generic placeholder image" width="140" height="140">
+          <img class="img-circle" src="{{asset('upload/game/'.$popular_game->id.'/'.$popular_game->path)}}" alt="Generic placeholder image" width="140" height="140">
           <h2>{{$popular_game->name}}</h2>
           <p>{{substr($popular_game->description, 0, strpos($popular_game->description, ' ', 50))}}...</p>
           <p><a class="btn btn-default" href="{{route('post.show', [$popular_game->category, $popular_game->id])}}" role="button">View details &raquo;</a></p>
@@ -82,7 +82,7 @@ Link Never Die
           <p class="lead">{{substr($most_downloaded_game->description, 0, strpos($most_downloaded_game->description, ' ', 100))}}...</p>
         </div>
         <div class="col-md-5">
-          <a href="{{route('post.show', [$most_downloaded_game->category, $most_downloaded_game->id])}}"><img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image" src="{{asset('upload/game/'.$most_downloaded_game->name.'/'.$most_downloaded_game->path)}}"></a>
+          <a href="{{route('post.show', [$most_downloaded_game->category, $most_downloaded_game->id])}}"><img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image" src="{{asset('upload/game/'.$most_downloaded_game->id.'/'.$most_downloaded_game->path)}}"></a>
         </div>
       </div>
 
@@ -95,7 +95,7 @@ Link Never Die
           <p class="lead">{{substr($recent_game->description, 0, strpos($recent_game->description, ' ', 100))}}...</p>
         </div>
         <div class="col-md-5 col-md-pull-7">
-          <a href="{{route('post.show', [$recent_game->category, $recent_game->id])}}"><img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image" src="{{asset('upload/game/'.$recent_game->name.'/'.$recent_game->path)}}"></a>
+          <a href="{{route('post.show', [$recent_game->category, $recent_game->id])}}"><img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image" src="{{asset('upload/game/'.$recent_game->id.'/'.$recent_game->path)}}"></a>
         </div>
       </div>
 
@@ -108,7 +108,7 @@ Link Never Die
           <p class="lead">{{substr($future->description, 0, strpos($future->description, ' ', 100))}}...</p>
         </div>
         <div class="col-md-5">
-          <a href="{{route('post.show', [$future->category, $future->id])}}"><img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image" src="{{asset('upload/game/'.$future->name.'/'.$future->path)}}"></a>
+          <a href="{{route('post.show', [$future->category, $future->id])}}"><img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image" src="{{asset('upload/game/'.$future->id.'/'.$future->path)}}"></a>
         </div>
       </div>
 		

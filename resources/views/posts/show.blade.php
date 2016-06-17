@@ -27,7 +27,14 @@
                 </span>|
                 <span style="margin-left: 10px; font-family:'Bangers'">
                     English and more
-                </span>
+                </span>|
+                @if (Auth::check())
+                    @if (Auth::user()->role == "admin")
+                <a href="{{route('game.edit', $game->id)}}"><span style="margin-left: 10px; font-family:'Bangers'">
+                    Edit post
+                </span></a>
+                    @endif
+                @endif
             </div>
             <div>
                 <!-- 2 columns -->
@@ -45,7 +52,7 @@
                                     @else
                                         <div class="item">
                                     @endif
-                                        <img src="{{asset('upload/game/'.$game->name.'/'.$photo->path)}}" width="652" height="338"/>
+                                        <img src="{{asset('upload/game/'.$game->id.'/'.$photo->path)}}" width="652" height="338"/>
                                     </div>
                                     @endforeach
                                 </div>

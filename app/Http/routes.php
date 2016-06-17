@@ -53,6 +53,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
 		'as' => 'game.store',
 		'uses' => 'GamesController@store'
 	]);
+	Route::get('game/{game_id}/edit', [
+		'as' => 'game.edit',
+		'uses' => 'GamesController@edit'
+	]);
+	Route::post('game/{game_id}/', [
+		'as' => 'game.update',
+		'uses' => 'GamesController@update'
+	]);
 });
 
 Route::get('login', 'Auth\AuthController@showLoginForm_2');
