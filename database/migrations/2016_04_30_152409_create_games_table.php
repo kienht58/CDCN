@@ -22,6 +22,10 @@ class CreateGamesTable extends Migration
             $table->timestamp('releaseTime');
             $table->string('downloadLink');
             $table->float('size');
+            $table->string('popularity');
+            $table->float('priceOnSteam');
+            $table->integer('remaining_quantity')->unsigned();
+            $table->float('discount');
             $table->integer('downloads')->unsigned()->default(0);
             $table->integer('views')->unsigned()->default(0);
             $table->timestamps();
