@@ -20,7 +20,8 @@ class CreateGamesTable extends Migration
             $table->text('recommendRequirement');
             $table->integer('category');
             $table->timestamp('releaseTime');
-            $table->string('downloadLink');
+            $table->string('image');
+            $table->string('videoLink');
             $table->float('size');
             $table->string('popularity');
             $table->float('priceOnSteam');

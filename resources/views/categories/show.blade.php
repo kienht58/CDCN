@@ -1,39 +1,51 @@
 @extends('layout.layout')
-
-@section('head.title')
-{{$category->name}}
-@stop
-
 @section('body.content')
-	<div class="container" id="games-content">
-	<div style="margin-top:10px;">
-		<table class="table table-hover">
-			@foreach($games as $game)
-			<tr onclick='document.location = "{{route('post.show', [$category->id, $game->id])}}";'>
-				<td class="col-md-1" >
-					<img class="img-responsive" src="{{asset('upload/game/'.$game->name.'/'.$game->path)}}" style="height:70px; width:100px;">
-				</td>
-				<td id="row-content">
-					{{$game->name}}
-				</td>
-				<td id="row-content">
-					<span class="glyphicon glyphicon-star"></span>
-					<span class="glyphicon glyphicon-star"></span>
-					<span class="glyphicon glyphicon-star"></span>
-					<span class="glyphicon glyphicon-star"></span>
-					<span class="glyphicon glyphicon-star-empty"></span>
-				</td>
-					
-				<td id="row-content">
-					<i class="fa fa-windows" aria-hidden="true"></i>
-					<i class="fa fa-apple" aria-hidden="true"></i>
-					<i class="fa fa-linux" aria-hidden="true"></i>
-				</td>
-				<td id="row-content">
-					<button type="button" class="btn btn-default navbar-btn">{{$game->size}} GB</button>
-				</td>
-			</tr>
-			@endforeach
-		</table>
+<div class="content">
+</div>
+<mid>
+	<div class="content list-banner">
+		<center>
+			<h1 class="hit-the-floor" >GAME LIST</h1>
+		</center>
+	</div>
+	<div class="w3-btn-floating-large w3-red" id="floating"><i><i class="fa fa-shopping-cart" aria-hidden="true"></i></i></div>
+	<div class="content">
+		<div class="container">
+			<div class="main">
+				<div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-grid">
+					<div class="cbp-vm-options">
+						<a href="#" class="cbp-vm-icon cbp-vm-grid cbp-vm-selected" data-view="cbp-vm-view-grid">Grid View</a>
+						<a href="#" class="cbp-vm-icon cbp-vm-list" data-view="cbp-vm-view-list">List View</a>
+					</div>
+					<ul>
+						@foreach($games as $game)
+							<li>
+								<a class="cbp-vm-image" href="#">
+									<img src="{{asset('upload/game/'.$game->id.'/'.$game->image)}}">
+									@if($game->popularity == 'hot')
+										<div class="linh label label-danger">HOT</div>
+									@endif
+								</a>
+								<h3 class="cbp-vm-title">{{$game->name}}</h3>
+								<div class="cbp-vm-price">${{$game->priceOnSteam}}</div>
+								<div class="cbp-vm-details">
+									<a class="btn btn-success add-to-cart" href="#">Thêm vào giỏ</a>
+									<a class="btn btn-primary add-to-cart" style="	margin-left:10px;" href="#">Xem thông tin</a>
+								</div>
+							</li>
+						@endforeach
+					</ul>
+				</div>
+				<center>
+					<ul class="pagination flat">
+						<li class="active flat"><a href="#">1</a></li>
+						<li class="flat"><a href="#">2</a></li>
+						<li class="flat"><a href="#">3</a></li>
+						<li class="flat"><a href="#">4</a></li>
+						<li class="flat"><a href="#">5</a></li>
+					</ul>
+				</center>
+			</div><!-- /main -->
+		</div><!-- /container -->
 	</div>
 @stop

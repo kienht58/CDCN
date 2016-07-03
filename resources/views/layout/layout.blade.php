@@ -1,35 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <title>@yield('head.title')</title>
-
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="{{ URL::asset('assets/css/bootstrap.min.css') }}" >
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bangers"  type="text/css">
-    <link rel="stylesheet" href="{{ URL::asset('assets/css/star-rating.min.css') }}" >
-    <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="{{ URL::asset('assets/css/carousel.css') }}" >
-    <link rel="stylesheet" href="{{ URL::asset('assets/css/custom.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('assets/css/footer.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('assets/css/select2.min.css') }}">
-    <link rel="shortcut icon" href="{{{ asset('favicon.ico') }}}">
+	<meta charset="utf-8">
+	<title>Cánh cụt shop</title>
+	<link href="{{ URL::asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+	<link href="{{ URL::asset('assets/css/custom.css') }}" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Bungee+Shade&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Itim&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Noto+Serif:700&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
+	<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css' rel='stylesheet'>
+	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+	<link href='https://fonts.googleapis.com/css?family=Lobster&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="../favicon.ico">
+	<link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/css/default.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/css/component.css') }}" />
+	<script src="{{ URL::asset('assets/js/modernizr.custom.js') }}"></script>
 </head>
-<body id="app-layout">
+
+<body>
 	@include('partials.navbar')
 	<div id="content">
         @yield('body.content')
     </div>
 	@include('partials.footer')
 	<script src="{{ URL::asset('assets/js/jquery.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/bootstrap.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/select2.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/star-rating.min.js') }}"></script>
-    @yield('body.script')
+	<script src="{{ URL::asset('assets/js/bootstrap.min.js') }}"></script>
+	<script src="{{ URL::asset('assets/js/classie.js') }}"></script>
+	<script src="{{ URL::asset('assets/js/cbpViewModeSwitch.js') }}"></script>
 </body>
 </html>

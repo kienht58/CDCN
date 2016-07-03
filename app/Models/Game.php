@@ -15,7 +15,12 @@ class Game extends Model
     	'recommendRequirement',
     	'category',
     	'releaseTime',
-    	'downloadLink',
+        'image',
+        'popularity',
+        'priceOnSteam',
+        'remaining_quantity',
+        'discount',
+    	'videoLink',
         'size'
     ];
 }

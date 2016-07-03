@@ -1,118 +1,199 @@
 @extends('layout.layout')
-
-@section('head.title')
-Link Never Die
-@stop
-
 @section('body.content')
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner" role="listbox">
-        <div class="item active">
-          <img class="first-slide" src="{{asset('upload/lol.jpg')}}" alt="First slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Link Never Die</h1>
-              <p>World for Gamers!!!</p>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <img class="second-slide" src="{{asset('upload/lol2.jpg')}}" alt="Second slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Link Never Die</h1>
-              <p>Get your relaxing from here!!!</p>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <img class="third-slide" src="{{asset('upload/lol3.jpg')}}" alt="Third slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Game is our life!!</h1>
-              <p>Free and Play</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div><!-- /.carousel -->
-
-
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
-
-    <div class="container marketing">
-
-      <!-- Three columns of text below the carousel -->
-      <div class="row">
-      	@foreach($popular_games as $popular_game)
-        <div class="col-lg-4">
-          <img class="img-circle" src="{{asset('upload/game/'.$popular_game->id.'/'.$popular_game->path)}}" alt="Generic placeholder image" width="140" height="140">
-          <h2>{{$popular_game->name}}</h2>
-          <p>{{substr($popular_game->description, 0, strpos($popular_game->description, ' ', 50))}}...</p>
-          <p><a class="btn btn-default" href="{{route('post.show', [$popular_game->category, $popular_game->id])}}" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        @endforeach
-      </div><!-- /.row -->
-
-
-      <!-- START THE FEATURETTES -->
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">Most downloaded game.</h2>
-          <a href="{{route('post.show', [$most_downloaded_game->category, $most_downloaded_game->id])}}">{{$most_downloaded_game->name}}</a>
-          <p class="lead">{{substr($most_downloaded_game->description, 0, strpos($most_downloaded_game->description, ' ', 100))}}...</p>
-        </div>
-        <div class="col-md-5">
-          <a href="{{route('post.show', [$most_downloaded_game->category, $most_downloaded_game->id])}}"><img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image" src="{{asset('upload/game/'.$most_downloaded_game->id.'/'.$most_downloaded_game->path)}}"></a>
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7 col-md-push-5">
-          <h2 class="featurette-heading">Newest game.</h2>
-          <a href="{{route('post.show', [$recent_game->category, $recent_game->id])}}">{{$recent_game->name}}</a>
-          <p class="lead">{{substr($recent_game->description, 0, strpos($recent_game->description, ' ', 100))}}...</p>
-        </div>
-        <div class="col-md-5 col-md-pull-7">
-          <a href="{{route('post.show', [$recent_game->category, $recent_game->id])}}"><img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image" src="{{asset('upload/game/'.$recent_game->id.'/'.$recent_game->path)}}"></a>
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">Incomming...</h2>
-          <a href="{{route('post.show', [$future->category, $future->id])}}">{{$future->name}}</a>
-          <p class="lead">{{substr($future->description, 0, strpos($future->description, ' ', 100))}}...</p>
-        </div>
-        <div class="col-md-5">
-          <a href="{{route('post.show', [$future->category, $future->id])}}"><img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image" src="{{asset('upload/game/'.$future->id.'/'.$future->path)}}"></a>
-        </div>
-      </div>
-		
-	  <hr class="featurette-divider">
-      <!-- /END THE FEATURETTES -->
-    </div>
+	<div class="content">
+		<div class="container">
+			<div class="feature">
+				<div class="banner">
+					<div class="w3-btn-floating-large w3-red" id="floating"><i><i class="fa fa-shopping-cart" aria-hidden="true"></i></i></div>
+					<center>
+						<span style="font-size:30px;color:white;">
+							<marquee behavior="scroll" direction="left">Chào mừng bạn đến với Cánh cụt SHOP <img src="assets/css/penguin_banner.png">
+							</marquee>
+						</span>
+						<span>
+						</span>
+					</center>
+				</div>
+				<div class="row">
+					<div class="col-md-9">
+						<div class="slide">
+							<div class="container">
+								<div class="row">
+									<div class="col-md-9">
+										<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+											<ol class="carousel-indicators">
+												<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+												<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+												<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+											</ol>
+											<div class="carousel-inner">
+												<div class="item active">
+													<a href="{{route('post.show', [$popular_games[0]->category, $popular_games[0]->id])}}">
+														<img src="{{asset('upload/game/'.$popular_games[0]->id.'/'.$popular_games[0]->image)}}" alt="First slide" style="width: 1200px; height: 358px">
+														<div class="carousel-caption">
+															<h3>{{$popular_games[0]->name}}</h3>
+															<p>{{substr($popular_games[0]->description, 0, strpos($popular_games[0]->description, ' ', 50))}}...</p>
+														</div>
+													</a>
+												</div>
+												<div class="item">
+													<a href="{{route('post.show', [$most_downloaded_games[0]->category, $most_downloaded_games[0]->id])}}">
+														<img src="{{asset('upload/game/'.$most_downloaded_games[0]->id.'/'.$most_downloaded_games[0]->image)}}" alt="Second slide" style="width: 1200px; height: 358px">
+														<div class="carousel-caption">
+															<h3>{{$most_downloaded_games[0]->name}}</h3>
+															<p>{{substr($most_downloaded_games[0]->description, 0, strpos($most_downloaded_games[0]->description, ' ', 50))}}...</p>
+														</div>
+													</a>
+												</div>
+												<div class="item">
+													<a href="{{route('post.show', [$discount_games[0]->category, $discount_games[0]->id])}}">
+														<img src="{{asset('upload/game/'.$discount_games[0]->id.'/'.$discount_games[0]->image)}}" alt="Third slide" style="width: 1200px; height: 358px">
+														<div class="carousel-caption">
+															<h3>{{$discount_games[0]->name}}</h3>
+															<p>{{substr($discount_games[0]->description, 0, strpos($discount_games[0]->description, ' ', 50))}}...</p>
+														</div>
+													</a>
+												</div>
+											</div>
+											<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+											<i class="fa fa-chevron-left" aria-hidden="true"></i></a><a class="right carousel-control" href="#carousel-example-generic" data-slide="next"><i class="fa fa-chevron-right" aria-hidden="true"></i></span></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div id="push">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="steam-checkout">
+							<div class="steam-description">
+								<span>Game khác từ Steam</span>
+							</div>
+						    <div class="button-cover">
+								<button class="button" style="vertical-align:middle"><span>Báo giá</span></button>
+							</div>
+						</div>
+						<div class="origin-checkout">
+							<div class="origin-description">
+								<span>Game khác từ Origin</span>
+							</div>
+							<div  class="button-cover">
+								<button class="button" style="vertical-align:middle"><span>Báo giá</span></button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="hot">
+			<span>
+			<div class="wrapper">
+				<div class="clip-text clip-text_one">GAME TRONG SHOP</div>
+			</div>
+			<div style="margin:10px;">
+			</div>
+			<marquee behavior="scroll" direction="left" style="background-color:white; margin-bottom:20px;">
+				{{$list_game}}
+			</marquee>
+			<div class="container">
+				<ul class="nav nav-pills text-bold">
+					<li class="active"><a data-toggle="pill" href="#home" style="border-radius:0">Nổi bật</a></li>
+					<li><a data-toggle="pill" href="#menu1" style="border-radius:0">Bán chạy</a></li>
+					<li><a data-toggle="pill" href="#menu2" style="border-radius:0">Mới</a></li>
+					<li><a data-toggle="pill" href="#menu3" style="border-radius:0">Đang khuyến mãi</a></li>
+				</ul>
+				<hr></hr>
+				<div class="tab-content">
+					<div id="home" class="tab-pane fade in active">
+						<div class="module">
+							<div class="flex-container">
+								@foreach($popular_games as $game)
+									<div class="flex-item">
+										<div class="item-image">
+											<img src="{{asset('upload/game/'.$game->id.'/'.$game->image)}}" style="width:230px; height:87px">
+										</div>
+										<div>
+											<span class="price">${{$game->priceOnSteam}}</span>
+										</div>
+									</div>
+								@endforeach
+							</div>
+							<div class="more">
+								<center>
+									<a href="#"><button class="button" style="vertical-align:middle"><span>Xem thêm</span></button></a>
+								</center>
+							</div>
+						</div>
+					</div>
+					<div id="menu1" class="tab-pane fade">
+						<div class="module">
+							<div class="flex-container">
+								@foreach($most_downloaded_games as $game)
+									<div class="flex-item">
+										<div class="item-image">
+											<img src="{{asset('upload/game/'.$game->id.'/'.$game->image)}}" style="width:230px; height:87px">
+										</div>
+										<div>
+											<span class="label label-danger attribute">HOT</span>
+											<span class="price">${{$game->priceOnSteam}}</span>
+										</div>
+									</div>
+								@endforeach
+							</div>
+							<div class="more">
+								<center>
+									<button class="button" style="vertical-align:middle"><span>Xem thêm</span></button>
+								</center>
+							</div>
+						</div>
+					</div>
+					<div id="menu2" class="tab-pane fade">
+						<div class="module">
+							<div class="flex-container">
+								@foreach($recent_games as $game)
+									<div class="flex-item">
+										<div class="item-image">
+											<img src="{{asset('upload/game/'.$game->id.'/'.$game->image)}}" style="width:230px; height:87px">
+										</div>
+										<div>
+											<span class="label label-warning attribute">NEW</span>
+											<span class="price">${{$game->priceOnSteam}}</span>
+										</div>
+									</div>
+								@endforeach
+							</div>
+							<div class="more">
+								<center>
+									<button class="button" style="vertical-align:middle"><span>Xem thêm</span></button>
+								</center>
+							</div>
+						</div>
+					</div>
+					<div id="menu3" class="tab-pane fade">
+						<div class="module">
+							<div class="flex-container">
+								@foreach($discount_games as $game)
+									<div class="flex-item">
+										<div class="item-image">
+											<img src="{{asset('upload/game/'.$game->id.'/'.$game->image)}}" style="width:230px; height:87px">
+										</div>
+										<div>
+											<span class="label label-success attribute">SALE</span>
+											<span class="price">${{$game->priceOnSteam}}</span>
+										</div>
+									</div>
+								@endforeach
+							</div>
+							<div class="more">
+								<center>
+									<button class="button" style="vertical-align:middle"><span>Xem thêm</span></button>
+								</center>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 @stop

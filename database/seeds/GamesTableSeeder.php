@@ -28,8 +28,12 @@ class GamesTableSeeder extends Seeder
 									Free Disk Space:	12 GB',
 			'category' => '1',
 			'releaseTime' => Carbon::now(),
-			'downloadLink' => 'http://cdn.ved.com.vn/gamevn/lmht/LienMinhHuyenThoai.160607.rar',
-			'size' => '5.5'
+			'videoLink' => 'http://cdn.ved.com.vn/gamevn/lmht/LienMinhHuyenThoai.160607.rar',
+			'size' => '5.5',
+            'popularity' => 'normal',
+            'priceOnSteam' => '10',
+            'remaining_quantity' => '100',
+            'discount' => '0.1'
         ]);
 
         Game::create([
@@ -46,8 +50,12 @@ class GamesTableSeeder extends Seeder
 			'recommendRequirement' => '',
 			'category' => '1',
 			'releaseTime' => Carbon::createFromDate(2012, 12, 31),
-			'downloadLink' => 'not available',
-			'size' => '7.8'
+			'videoLink' => 'not available',
+			'size' => '7.8',
+            'popularity' => 'normal',
+            'priceOnSteam' => '6',
+            'remaining_quantity' => '20',
+            'discount' => '0.6'
         ]);
 
         Game::create([
@@ -69,8 +77,12 @@ class GamesTableSeeder extends Seeder
 									Free Disk Space:	30 GB',
 			'category' => '1',
 			'releaseTime' => Carbon::createFromDate(2016, 12, 31),
-			'downloadLink' => 'not available',
-			'size' => '30'
+			'videoLink' => 'not available',
+			'size' => '30',
+            'popularity' => 'hot',
+            'priceOnSteam' => '2',
+            'remaining_quantity' => '20',
+            'discount' => '0.3'
 		]);
     }
 }

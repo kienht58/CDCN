@@ -1,279 +1,207 @@
 @extends('layout.layout')
 
-@section('head.title')
-{{$game->name}}
-@stop
-
 @section('body.content')
-<!-- CONTENT -->
+<div class="w3-btn-floating-large w3-red" id="floating"><i><i class="fa fa-shopping-cart" aria-hidden="true"></i></i></div>
+<a class="w3-btn-floating-large w3-teal" id="floating-right"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
 <div class="container">
-  <div style="margin-top:50px;">
-      <div class="title-wrapper">
+    <div class="title-wrapper">
         <div style="padding-left: 100px;padding-top: 100px;position: relative;">
             <span style="font-family: 'Bangers';font-size: 50px;">
-                {{$game->name}}
+                The Witcher 3: Wild Hunt
             </span>
-            <div>
-                <span style="padding-left: 10px;margin-right: 10px;">
-                    @for ($i = 0; $i < $averageRate; $i++)
-                    <span class="glyphicon glyphicon-star"></span>
-                    @endfor
-                    @for ($i = $averageRate; $i < 5; $i++)
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                    @endfor
-                </span>|
-                <span style="margin-left: 10px;font-family:'Bangers';margin-right: 10px;">
-                    Windows
-                </span>|
-                <span style="margin-left: 10px; font-family:'Bangers'">
-                    English and more
-                </span>|
-                @if (Auth::check())
-                    @if (Auth::user()->role == "admin")
-                <a href="{{route('game.edit', $game->id)}}"><span style="margin-left: 10px; font-family:'Bangers'">
-                    Edit post
-                </span></a>
-                    @endif
-                @endif
-            </div>
-            <div>
-                <!-- 2 columns -->
-                <div style="margin-top:20px;">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xs-7">
-                                <span style="font-family: 'Bangers';padding-left: 10px;"> MEDIA GALLERY </span>
-                                <div id="myCarousel" class="carousel slide" style="margin-top:30px;">
-                                    <!-- Carousel items -->
-                                    <div class="carousel-inner">
-                                    @foreach($photos as $photo)
-                                    @if ($photo->isAvatar)
-                                        <div class="item active">
-                                    @else
-                                        <div class="item">
-                                    @endif
-                                        <img src="{{asset('upload/game/'.$game->id.'/'.$photo->path)}}" width="652" height="338"/>
-                                    </div>
-                                    @endforeach
-                                </div>
-
-                              <!-- Carousel nav -->
-                              <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-                              <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-                          </div>
-                          <div style="margin-top: 30px;">
-                            <span style="text-align: center; font-family: 'Bangers';font-size: 40px;color: white; text-shadow: 1px 1px 2px black, 0 0 25px black, 0 0 5px black;">
-                                <center>
-                                    Description
-                                </center>
-                            </span>
-                            <hr>
-                            <span style=" font-family:'Open Sans'; font-size: 15px;">
-                                {{$game->description}}
-                            </span>
-                            <hr>
-                        </div>
-                        <div style="margin-top: 30px">
-                            <span style="text-align: center; font-family: 'Bangers';font-size: 40px;color: white; text-shadow: 1px 1px 2px black, 0 0 25px black, 0 0 5px black;">
-                                <center>
-                                    Feedback
-                                </center>
-                            </span>
-
-                            <!-- <div class="form-group">
-                                {!! Form::label('Review', 'Review', [ 'class' => 'control-label' ]) !!}
-                                <input id="rating" class="rating-loading" value="2" data-size="xs" name="rating">
-                                {!! Form::text('content', '', ['id' => 'reviewContent', 'class' => 'form-control', 'required']) !!}
-                            </div> -->
-
-                            <div class="tab-content" style="font-family: 'Open Sans';">
-                                <div id="home" class="tab-pane fade in active">
-                                    <table class="table" id="tableReview">
-                                        @if (!Auth::guest())
-                                        <tr style="position: relative;">
-                                            <td style="position: relative;">
-                                                <div style="padding-top: 10px;">
-                                                    <div style="padding: 10px;position:relative;">
-                                                        <blockquote>
-                                                            {!! Form::open([ 'route' => ['post.storeReview', $category_id, $game->id, $post_id], 'method' => 'POST', 'class' => 'form-horizontal', 'id' => 'review' ]) !!}
-                                                            <div class="form-group">
-                                                                <input type="hidden" name="post_id" id="post_id" value="{{$post_id}}">
-                                                                {!! Form::label('Review', 'Review', [ 'class' => 'control-label' ]) !!}
-                                                                <input id="rating" class="rating-loading" value="2" data-size="xs" name="rating">
-                                                                {!! Form::text('content', '', ['id' => 'reviewContent', 'class' => 'form-control', 'required']) !!}
-                                                            </div>
-                                                            {!! Form::submit('Thêm', ['id' => 'submit', 'class' => 'btn btn-primary pull-right' ])!!}
-                                                            {!! Form::close() !!}
-                                                        </blockquote>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        @endif
-                                        @foreach($reviews as $review)
-                                        <tr style="position: relative;">
-                                            <td style="position: relative;">
-                                                <div style="padding-top: 10px;">
-                                                    <div style="padding: 10px;position:relative;">
-                                                        <blockquote>
-                                                            {{$review->content}}
-                                                            <footer>
-                                                                <span><img style="border-radius: 50%; width:32px; height:32px;" src="{{URL::asset('upload/avatar/'.$review->avatar)}}" /> </span>
-                                                                <span style="font-family:'Bangers';margin-left: 5px;"> {{$review->username}} </span>
-                                                                <span style="margin-left: 10px;">
-                                                                    @for($i = 0; $i < $review->rating; $i++)
-                                                                    <span class="glyphicon glyphicon-star"></span>
-                                                                    @endfor
-                                                                    @for($i = 0; $i < 5 - $review->rating; $i++)
-                                                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                                                    @endfor
-                                                                </span>
-                                                            </footer>
-                                                        </blockquote>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </table>
-                                </div>
+        </div>
+    </div>
+    <!-- 2 columns -->
+    <div style="margin-top:20px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-7">
+                    <div id="myCarousel" class="carousel slide" style="margin-top:30px;">
+                        <!-- Carousel items -->
+                        <div class="carousel-inner">
+                            <div class="active item">
+                                <iframe width="650" height="338" src="https://www.youtube.com/embed/glo7AzNq8YY" frameborder="0" allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div class="item">
+                                <img src="https://images-1.gog.com/fd7c9b743b1f572b8fd632a128af3f4e3da01bcf722a89ebe06d53dc575715cb_product_card_screenshot_600.jpg" width="652" height="338"/>
+                            </div>
+                            <div class="item">
+                                <img src="https://images-1.gog.com/ab3a940de6909e3a158ada6e97ab52209ba553eb51cef4c88e316191573df1f6_product_card_screenshot_600.jpg" width="652" height="338"/>
+                            </div>
+                            <div class="item">
+                                <img src="https://images-1.gog.com/2f165f28005b9a1cd2f6150e1c6e726c5725b657daa61adef794cd5f716094a7_product_card_screenshot_600.jpg" width="652" height="338"/>
+                            </div>
+                            <div class="item">
+                                <img src="https://images-1.gog.com/4e4fa3151d55f09c181a8bb94001d8b51a04b43f654e030a548f549167519058_product_card_screenshot_600.jpg" width="652" height="338"/>
                             </div>
                         </div>
+
+                        <!-- Carousel nav -->
+                        <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                        <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+                    </div>
+                    <div style="margin-top: 30px;">
+                        <span style="text-align: center; font-family: 'Sriracha', cursive;;font-size: 40px;color: white; text-shadow: 1px 1px 2px black, 0 0 25px black, 0 0 5px black;">
+                            <center>
+                                Mô tả
+                            </center>
+                        </span>
+                        <hr>
+                        <span style=" font-family:'Open Sans'; font-size: 15px;">
+                            About: A truly next-generation role playing game combining a mature, non-linear story with a vast open world.
+                            The Witcher 3: Wild Hunt, the RPG epic with a mature, non-linear story that reacts to your decisions, a vast open world with a living ecosystem, dynamic and tactical combat, and stunning visuals, is available on GOG.com!
+                            We are part of the CD PROJEKT family, so buying here also gives you the chance to support us directly!
+                            The Witcher 3: Wild Hunt - Expansion Pass also available!
+                            The Expansion Pass secures your access to two epic adventures set in the vibrant world of monster hunter Geralt of Rivia. The upcoming expansions will offer gamers new content, gear and foes, and will feature characters both new and dearly missed -- all crafted with maximum attention to detail and quality.
+                            Game details:
+                            You are The Witcher, professional monster hunter, a killer for hire. Trained from early childhood and mutated to gain superhuman skills, strength and reflexes, witchers are a distrusted counterbalance to the monster-infested world in which they live. You are a drifter, always on the move, following in the footsteps of tragedy to make other people's problems your own - if the pay is good. You are now taking on your most important contract yet: to track down the child of prophecy, a living weapon, a key to save or destroy this world. You will make choices that go beyond good & evil, and you will face their far reaching consequences.
+                            The Witcher 3: Wild Hunt is a story-driven next-generation open world role-playing game, set in a troubled and morally indifferent fantasy universe. Built for endless adventure, the massive open world of The Witcher sets new standards in terms of size, depth and complexity. You will traverse a vast open world, rich with merchant cities, dangerous mountain passes, and forgotten caverns to explore. It's survival of the fittest - deal with treasonous generals, devious witches and corrupt royalty to provide dark and dangerous services, then invest your rewards to upgrade your equipment, or spend them away on pleasures of the night.
+
+
+                        </span>
+                        <hr>
                     </div>
 
-                    <div class="col-xs-4">
-                        <span style="font-family: 'Bangers';padding-left: 10px;"> DOWNLOAD ITEM </span>
-                        <div>
-                            <div style="margin-top: 30px;width: 400px;height: 135px; position: relative;padding: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                </div>
+                <div class="col-xs-4">
+                    <div>
+                        <div style="margin-top: 30px;width: 400px;height: 150px; position: relative;padding: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);text-align:center;">
 
-                                <span style="font-family:'Bangers';font-size:40px;"> {{$game->size}} GB </span>
-                                @if (!Auth::guest())
-                                <span style="font-family:'Bangers';position: absolute;right: 5px;top: 18px;"><a href="{{$game->downloadLink}}"><button class="btn btn-success" style="width:204px;height: 40px;font-size:20px">Download</button></a></span>
-                                @else
-                                <span style="font-family:'Bangers';position: absolute;right: 5px;top: 18px;"><a href="{{url('/login')}}"><button class="btn btn-success" style="width:204px;height: 40px;font-size:20px">Login to download</button></a></span>
-                                @endif
-                                <hr style="margin:0px;padding: 0px;">
-                                <div style="position: absolute;bottom:10px;">
-                                    <ul>
-                                        <li><span style="font-family: 'Bangers'"> Please read the instruction carefully </span></li>
-                                        <li><span style="font-family: 'Bangers'"> Do not copy post without adding source </span></li>
-                                    </ul>
-                                </div>
+                            <span style="font-family:'Bangers';font-size:40px;text-align:center;"> $55 </span>
+                            <hr style="margin:0px;padding: 0px;">
+                            <div style="position: absolute;bottom:15px;margin-left:20%">
+                                <button class="btn btn-success" style="width:204px;height: 50px;font-size:20px;padding: 10px; border-radius:0">Thêm vào giỏ</button>
                             </div>
-                        </div>
-
-                        <div style=" margin-top: 30px; padding-left: 10px;font-family: 'Bangers'">
-                            SIMILAR GAME
-                            
-                            <div>
-                                @foreach($related_games as $related)
-                                <div style="margin-top:11px;width: 400px;height:60px;position: relative; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-                                    <span>
-                                        <img src="https://images-1.gog.com/37d4a208d1f5bb0e163da540ac894ba46a7d566ede31aaaefc74bbcd46ebd190_100.jpg" width="100px" height="60px">
-                                    </span>
-                                    <span style="position: absolute;top:10px; margin-left: 10px;">
-                                        {{$related->name}}
-                                    </span>
-                                    <span style="position: absolute;bottom:10px; margin-left: 10px;">
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star-empty"></span>
-                                    </span>
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
-                        <div style="margin-top: 20px;">
-                            <table class="table" style="font-family: 'Open Sans', sans-serif;">
-                                <tr>
-                                    <td>
-                                        GENRE
-                                    </td>
-                                    <td>
-                                        Role-playing - Adventure - Fantasy
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        WORK ON
-                                    </td>
-                                    <td>
-                                        Windows (7, 8, 10)
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        LANGUAGES
-                                    </td>
-                                    <td>
-                                        Audio and text: Português do Brasil, Deutsch, English, français, 日本語, polski, русский. Text only: العربية, 中文, český, español, Español (AL), magyar, italiano, 한국어
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        FEATURE
-                                    </td>
-                                    <td>
-                                        single-player - achievements - controller support
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        RELEASE
-                                    </td>
-                                    <td>
-                                        May 19, 2015
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        COMPANY
-                                    </td>
-                                    <td>
-                                        CD PROJEKT RED / CD PROJEKT RED
-                                    </td>
-                                </tr>                               
-                            </table>
                         </div>
                         <div style="margin-top: 20px;">
                             <hr>
-                            <span style="font-family: 'Bangers'">
+                            <span style="font-family: 'Sriracha', cursive;;font-size: 2em">
                                 <center>
-                                    Minimum system requirements - Windows: 
+                                    Cấu hình tối thiểu:
                                 </center>
                             </span>
                             <div style="font-family: 'Open Sans';margin-top: 10px;">
-                                {{$game->minimumRequirement}}
+                                <table class="table">
+                                    <tr>
+                                        <td>
+                                            OS :
+                                        </td>
+                                        <td>
+                                            64-bit Windows 7 or 64-bit Windows 8 (8.1)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            CPU
+                                        </td>
+                                        <td>
+                                            Intel CPU Core i5-2500K 3.3 GHz or AMD CPU Phenom II X4 940
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Memory
+                                        </td>
+                                        <td>
+                                            RAM 6 GB
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Graphic
+                                        </td>
+                                        <td>
+                                            Nvidia GPU GeForce GTX 660 / AMD GPU Radeon HD 7870
+                                            Please mind that we only officially support full-size desktop graphics cards
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            HDD
+                                        </td>
+                                        <td>
+                                            35 GB of available space
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            DirectX
+                                        </td>
+                                        <td>
+                                            11
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
-                            
-                            <span style="font-family: 'Bangers';">
+
+                            <span style="font-family: 'Sriracha', cursive;; font-size: 2em">
                                 <center>
-                                    Recommended system requirements - Windows: 
+                                    Cấu hình yêu cầu:
                                 </center>
                             </span>
                             <div style="font-family: 'Open Sans';margin-top: 10px;">
-                                {{$game->recommendRequirement}}
+                                <table class="table">
+                                    <tr>
+                                        <td>
+                                            OS :
+                                        </td>
+                                        <td>
+                                            64-bit Windows 7 or 64-bit Windows 8 (8.1)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            CPU
+                                        </td>
+                                        <td>
+                                            Intel CPU Core i5-2500K 3.3 GHz or AMD CPU Phenom II X4 940
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Memory
+                                        </td>
+                                        <td>
+                                            RAM 6 GB
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Graphic
+                                        </td>
+                                        <td>
+                                            Nvidia GPU GeForce GTX 660 / AMD GPU Radeon HD 7870
+                                            Please mind that we only officially support full-size desktop graphics cards
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            HDD
+                                        </td>
+                                        <td>
+                                            35 GB of available space
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            DirectX
+                                        </td>
+                                        <td>
+                                            11
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
 
                     </div>
                 </div>
             </div>
-
         </div>
-        {!! Form::close() !!}
     </div>
 </div>
-@stop
-
-@section('body.script')
-<script type="text/javascript">
-    $('#rating').rating({
-        step: 1,
-        starCaptions: {1: 'Very Poor', 2: 'Poor', 3: 'Ok', 4: 'Good', 5: 'Very Good'},
-        starCaptionClasses: {1: 'text-danger', 2: 'text-warning', 3: 'text-info', 4: 'text-primary', 5: 'text-success'}
-    });
-</script>
+</div>
+</div>
+</div> 
 @stop
