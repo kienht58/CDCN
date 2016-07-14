@@ -61,6 +61,17 @@
 
                         </span>
                         <hr>
+                        <hr>
+                        <a href="{{route('game.edit', $game->id)}}"><button class="btn btn-lg btn-info">Chỉnh sửa bài viết</button></a>
+                        {!! Form::open([
+                	            'route' => ['game.delete', $game->id],
+                	            'method' => 'DELETE',
+                			    'style' =>'display: inline'
+                            ])
+                		!!}
+                			<button class="btn btn-lg btn-danger">Xóa bài viết này</button>
+                		{!! Form::close() !!}
+                        <hr><hr>
                     </div>
 
                 </div>
@@ -203,5 +214,5 @@
 </div>
 </div>
 </div>
-</div> 
+</div>
 @stop

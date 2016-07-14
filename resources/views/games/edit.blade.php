@@ -5,7 +5,8 @@ Edit
 @endsection
 
 @section('body.content')
-<div class="container">
+<div class="container" style="margin-top: 100px">
+	<h1 style="text-align: center">Chỉnh sửa bài viết</h3>
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			{!!Form::model($game, [
@@ -90,7 +91,7 @@ Edit
                 var li = document.createElement("li");
                 li.setAttribute("style", "display: inline; margin: 10px 10px;")
                 list.appendChild(li);
-                          
+
                 var img = document.createElement("img");
                 img.src = window.URL.createObjectURL(files[i]);
                 img.setAttribute("class", "img-control");
@@ -102,7 +103,7 @@ Edit
                 li.appendChild(img);
             }
         }
-    }  
+    }
 </script>
 <script>
     $( document ).on( "click", ".img-control", function() {

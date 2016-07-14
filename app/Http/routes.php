@@ -44,24 +44,27 @@ Route::group(['prefix' => '/categories/{category_id}/posts'], function() {
 	]);
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function() {
-	Route::get('game/create', [
-		'as' => 'game.create',
-		'uses' => 'GamesController@create'
-	]);
-	Route::post('game', [
-		'as' => 'game.store',
-		'uses' => 'GamesController@store'
-	]);
-	Route::get('game/{game_id}/edit', [
-		'as' => 'game.edit',
-		'uses' => 'GamesController@edit'
-	]);
-	Route::post('game/{game_id}/', [
-		'as' => 'game.update',
-		'uses' => 'GamesController@update'
-	]);
-});
+Route::get('game/create', [
+	'as' => 'game.create',
+	'uses' => 'GamesController@create'
+]);
+Route::post('game', [
+	'as' => 'game.store',
+	'uses' => 'GamesController@store'
+]);
+Route::get('game/{game_id}/edit', [
+	'as' => 'game.edit',
+	'uses' => 'GamesController@edit'
+]);
+Route::post('game/{game_id}/', [
+	'as' => 'game.update',
+	'uses' => 'GamesController@update'
+]);
+
+Route::delete('game/{game_id}/', [
+	'as' => 'game.delete',
+	'uses' => 'GamesController@delete'
+]);
 
 Route::get('login', 'Auth\AuthController@showLoginForm_2');
 Route::post('login', 'Auth\AuthController@postLogin');
@@ -76,4 +79,3 @@ Route::get('activate/{code}', 'Auth\AuthController@activate');
 Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
 Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
 Route::post('password/reset', 'Auth\PasswordController@reset');
-

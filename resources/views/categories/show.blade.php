@@ -25,13 +25,22 @@
 									@if($game->popularity == 'hot')
 										<div class="linh label label-danger">HOT</div>
 									@endif
+
+									<h3 class="cbp-vm-title">{{$game->name}}</h3>
+									<div class="cbp-vm-price">${{$game->priceOnSteam}}</div>
+									<div class="cbp-vm-details">
+										<a class="btn btn-success add-to-cart" href="#">Thêm vào giỏ</a>
+										<a class="btn btn-primary add-to-cart" style="	margin-left:10px;" href="#">Xem thông tin</a>
+										{!! Form::open([
+									            'route' => ['game.delete', $game->id],
+									            'method' => 'DELETE',
+											    'style' =>'display: inline'
+								            ])
+										!!}
+											<button class="btn btn-danger">Delete</button>
+										{!! Form::close() !!}
+									</div>
 								</a>
-								<h3 class="cbp-vm-title">{{$game->name}}</h3>
-								<div class="cbp-vm-price">${{$game->priceOnSteam}}</div>
-								<div class="cbp-vm-details">
-									<a class="btn btn-success add-to-cart" href="#">Thêm vào giỏ</a>
-									<a class="btn btn-primary add-to-cart" style="	margin-left:10px;" href="#">Xem thông tin</a>
-								</div>
 							</li>
 						@endforeach
 					</ul>

@@ -19,6 +19,7 @@
                 <li><a href="/faqs">Hướng dẫn</a></li>
                 <li><a href="/donate">Liên Hệ</a></li>
                 <li><a href="/cart">Thanh toán</a></li>
+                <li><a href="{{route('game.create')}}">Tạo post mới</a></li>
             </ul>
             <div class="col-sm-3 col-md-3">
                 <form class="navbar-form" role="search">

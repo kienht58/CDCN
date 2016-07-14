@@ -27,7 +27,7 @@ class GamesController extends Controller
         //dd($request);
     	$request->releaseTime = Carbon::createFromFormat('Y-m-d', $request->releaseTime);
         $data = $request->except('_method', '_token');
-        
+
         $game = Game::create($data);
 
         if ($request->hasFile('photo')) {
@@ -52,7 +52,7 @@ class GamesController extends Controller
     	return redirect()->route('categories.show', $request->category);
     }
 
-    public function edit($game_id) 
+    public function edit($game_id)
     {
         $categories = Category::all();
         $categoriesList = Category::all()->lists('name', 'id');
@@ -65,5 +65,12 @@ class GamesController extends Controller
         $game = Game::find($game_id);
         $game->update($request->except('_method', '_token'));
         return redirect()->route('post.show', [$game->category, $game_id]);
+    }
+
+    public function delete($game_id) {
+        $game = Game::find($game_id);
+        $category_id = $game->category;
+        $game->delete();
+        return redirect()->route('categories.show', $category_id);
     }
 }
